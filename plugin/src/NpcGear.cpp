@@ -201,7 +201,9 @@ namespace NpcGear
 		{
 			auto  w = Gear::FindArmor(a_actor, a_mask);
 			auto* armor = w.object ? w.object->As<RE::TESObjectARMO>() : nullptr;
-			if (!w || !armor) {
+			auto* actorBase = a_actor->GetActorBase();
+			auto* race = a_actor->GetRace();
+			if (!w || !armor || (actorBase && actorBase->skin == armor) || (race && race->skin == armor)) {  // a creature's or race's skin is not gear
 				return false;
 			}
 			if (!Disallowed(w.object) && !InList(kIgnoreArmorList, w.object)) {

@@ -428,6 +428,8 @@ namespace Degrade
 
 		// Closing the crafting menu while not sitting at a grindstone or workbench means the player used the repair kit; getting up from one
 		// of them clears that (the original's OnMenuClose / OnGetUp).
+		bool AtCraftingFurniture(RE::PlayerCharacter* a_player);
+
 		class MenuSink final : public RE::BSTEventSink<RE::MenuOpenCloseEvent>
 		{
 		public:
@@ -446,8 +448,8 @@ namespace Degrade
 				if (!player) {
 					return RE::BSEventNotifyControl::kContinue;
 				}
-				const bool kit = player->GetSitSleepState() == RE::SIT_SLEEP_STATE::kNormal;
-				SKSE::log::info("Crafting menu closed ({}): {}", kit ? "not sitting" : "at a workbench", kit ? "repair kit thinner buffer" : "normal buffer");
+				const bool kit = !AtCraftingFurniture(player);  // the menu only opens away from a grindstone or workbench with the repair kit
+				SKSE::log::info("Crafting menu closed ({}): {}", kit ? "not at a bench" : "at a workbench", kit ? "repair kit thinner buffer" : "normal buffer");
 				g_whetstone = kit;
 				if (kit) {
 					SeedLater(player->GetFormID());
