@@ -78,7 +78,8 @@ namespace Degrade
 			if (!dh) {
 				return false;
 			}
-			if (auto* list = dh->LookupForm<RE::BGSListForm>(0x01C23C, "LootandDegradation.esp"sv); list && list->HasForm(a_obj)) {
+			auto* listForm = Materials::FromFile("LootandDegradation.esp"sv, 0x01C23C);
+			if (auto* list = listForm ? listForm->As<RE::BGSListForm>() : nullptr; list && list->HasForm(a_obj)) {
 				return true;
 			}
 			// Dragonborn's Horksbane, Champion's Cudgel and Stormfang (the original adds them to its list at game start)
@@ -112,12 +113,15 @@ namespace Degrade
 			if (!dh || !am) {
 				return;
 			}
-			auto* form = dh->LookupForm<RE::BGSSoundDescriptorForm>(a_weapon ? 0x017C1B : 0x0186E1, "LootandDegradation.esp"sv);
+			auto* sound = Materials::FromFile("LootandDegradation.esp"sv, a_weapon ? 0x017C1B : 0x0186E1);
+			auto* form = sound ? sound->As<RE::BGSSoundDescriptorForm>() : nullptr;
 			if (!form || !form->soundDescriptor) {
+				SKSE::log::warn("Break: the {} break sound record was not found", a_weapon ? "weapon" : "armor");
 				return;
 			}
 			RE::BSSoundHandle handle;
 			if (!am->GetSoundHandle(handle, form->soundDescriptor)) {
+				SKSE::log::warn("Break: could not build the {} break sound", a_weapon ? "weapon" : "armor");
 				return;
 			}
 			handle.SetPosition(a_actor->GetPosition());
@@ -134,9 +138,16 @@ namespace Degrade
 			PlayBreakSound(a_actor, a_weapon);
 			a_actor->RemoveItem(a_worn.object, 1, RE::ITEM_REMOVE_REASON::kRemove, a_worn.list, nullptr);
 			if (info.scrap != Materials::Scrap::None) {
-				if (auto* scrap = Materials::ScrapForm(info.scrap)) {
-					a_actor->AddObjectToContainer(scrap, nullptr, RandInt(info.minCount, info.maxCount), nullptr);
+				auto*     scrap = Materials::ScrapForm(info.scrap);
+				const int count = RandInt(info.minCount, info.maxCount);
+				if (scrap) {
+					a_actor->AddObjectToContainer(scrap, nullptr, count, nullptr);
+					SKSE::log::info("Break: {} -> {} x{} added ({:08X})", name, scrap->GetName(), count, scrap->GetFormID());
+				} else {
+					SKSE::log::warn("Break: {} should leave scrap type {} x{} but that item was not found", name, static_cast<int>(info.scrap), count);
 				}
+			} else {
+				SKSE::log::info("Break: {} leaves no scrap", name);
 			}
 			Notify((name + " has broken into pieces.").c_str());
 		}
@@ -397,7 +408,7 @@ namespace Degrade
 	void Register()
 	{
 		if (auto* dh = RE::TESDataHandler::GetSingleton()) {
-			g_requiem = dh->LookupForm(0x973D69, "Requiem.esp"sv) != nullptr;
+			g_requiem = Materials::FromFile("Requiem.esp"sv, 0x973D69) != nullptr;
 		}
 		auto* holder = RE::ScriptEventSourceHolder::GetSingleton();
 		if (!holder) {

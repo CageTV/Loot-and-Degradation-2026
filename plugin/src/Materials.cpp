@@ -91,13 +91,32 @@ namespace Materials
 		return r;
 	}
 
+	RE::TESForm* FromFile(std::string_view a_file, RE::FormID a_localId)
+	{
+		auto* dh = RE::TESDataHandler::GetSingleton();
+		auto* file = dh ? dh->LookupModByName(a_file) : nullptr;
+		if (!file) {
+			return nullptr;
+		}
+		RE::FormID full = 0;
+		if (file->IsLight()) {
+			full = 0xFE000000u | (static_cast<RE::FormID>(file->GetSmallFileCompileIndex()) << 12) | (a_localId & 0xFFFu);
+		} else {
+			full = (static_cast<RE::FormID>(file->GetCompileIndex()) << 24) | (a_localId & 0x00FFFFFFu);
+		}
+		return RE::TESForm::LookupByID(full);
+	}
+
 	RE::TESBoundObject* ScrapForm(Scrap a_scrap)
 	{
 		auto* dh = RE::TESDataHandler::GetSingleton();
 		if (!dh) {
 			return nullptr;
 		}
-		auto own = [&](RE::FormID id) { return dh->LookupForm<RE::TESBoundObject>(id, "LootandDegradation.esp"sv); };
+		auto own = [&](RE::FormID id) -> RE::TESBoundObject* {
+			auto* f = FromFile("LootandDegradation.esp"sv, id);
+			return f ? f->As<RE::TESBoundObject>() : nullptr;
+		};
 		switch (a_scrap) {
 		case Scrap::Ebony:         return own(0x01A73D);
 		case Scrap::Dwemer:        return own(0x01A73C);
@@ -111,7 +130,10 @@ namespace Materials
 		case Scrap::BoneMeal:      return RE::TESForm::LookupByID<RE::TESBoundObject>(0x00034CDF);
 		case Scrap::DragonScales:  return RE::TESForm::LookupByID<RE::TESBoundObject>(0x0003ADA4);
 		case Scrap::LeatherStrips: return RE::TESForm::LookupByID<RE::TESBoundObject>(0x000800E4);
-		case Scrap::Chitin:        return dh->LookupForm<RE::TESBoundObject>(0x02B04E, "Dragonborn.esm"sv);
+		case Scrap::Chitin: {
+			auto* f = FromFile("Dragonborn.esm"sv, 0x02B04E);
+			return f ? f->As<RE::TESBoundObject>() : nullptr;
+		}
 		default:                   return nullptr;
 		}
 	}

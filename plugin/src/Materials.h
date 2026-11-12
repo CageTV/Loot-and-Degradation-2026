@@ -17,4 +17,7 @@ namespace Materials
 
 	Info                Classify(RE::TESBoundObject* a_item);
 	RE::TESBoundObject* ScrapForm(Scrap a_scrap);
+
+	// A record of a plugin by its file-local FormID: the plugin's load index is read from the load order and the full FormID is built from it.
+	RE::TESForm* FromFile(std::string_view a_file, RE::FormID a_localId);
 }
