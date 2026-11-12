@@ -1,0 +1,32 @@
+[size=6][b]Loot and Degradation 2026[/b][/size]
+[i]isoku's Loot and Degradation rebuilt as one native SKSE plugin: tempered gear that wears down, tempered and enchanted NPC gear, the Equipment Repair Kit, a gear health widget, and every setting in SKSE Menu Framework 3.[/i]
+
+[b]Pre-release.[/b] NPC looting and the blacksmith / fletcher tempering services of the original are not in yet. A new game is recommended.
+
+[line]
+
+[size=5][b]What it does[/b][/size]
+[list]
+[*][b]Gear wears down:[/b] tempered weapons and armor lose their level (Fine, Superior, Exquisite, Flawless, Epic, Legendary) with hits taken and swings made, scaled by material. Optional breaking, with scrap left behind (metal scrap, leather strips).
+[*][b]Followers[/b] can use the same wear (off by default).
+[*][b]NPC gear:[/b] NPCs get tempered and enchanted weapons and armor as they load, using the original's formulas and enchantment lists, scaled by their level.
+[*][b]Equipment Repair Kit:[/b] improve weapons or armor away from a grindstone or workbench, or damage your equipment by a tier.
+[*][b]Gear health widget:[/b] level and percentage left for what you wear, optional fading as gear wears, original or new icons, icon colours (one colour, or green to red by health), free position, spacing and layout presets.
+[*][b]Settings in SKSE Menu Framework 3[/b] (Loot and Degradation > Degradation / Breaking / Durability / NPC gear / Widget). No MCM and no SkyUI needed.
+[/list]
+Replaces the original Loot and Degradation and its Papyrus scripts: it is a Skyrim SE plugin without scripts. Disable the original (any version), Simple Degradation and Service Your Gear.
+
+[size=5][b]Requirements[/b][/size]
+[list]
+[*]SKSE64 and [url=https://www.nexusmods.com/skyrimspecialedition/mods/32444]Address Library for SKSE Plugins[/url] for your game version
+[*][url=https://www.nexusmods.com/skyrimspecialedition/mods/120352]SKSE Menu Framework 3[/url]: all settings and the widget
+[*]Skyrim SE / AE, including 1.7.x. The installer asks which LootandDegradation.dll to use and pre-selects the right one: the new build for 1.6.1170 and newer, the older build for Skyrim VR and 1.6.1130 and older. The older build has not been tested in game.
+[/list]
+
+[size=5][b]Credits[/b][/size]
+[list]
+[*][b]isoku[/b]: the original Loot and Degradation, used with permission
+[*][b]richmondb[/b]: the whetstone model
+[*][b]psychosteve[/b]: the widget icons
+[/list]
+Source code: https://github.com/CageTV/Loot-and-Degradation-2026

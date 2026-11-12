@@ -1,3 +1,4 @@
 build/
 assets/_swf_export/
 plugin/build-legacy.log
+release/

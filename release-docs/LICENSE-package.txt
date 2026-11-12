@@ -1,0 +1,15 @@
+Loot and Degradation 2026 - license
+===================================
+
+Everything in this download except LootandDegradation.dll is a remix of Loot and Degradation by isoku, released by its author under
+CC BY-NC-SA 4.0 (Attribution-NonCommercial-ShareAlike 4.0 International, https://creativecommons.org/licenses/by-nc-sa/4.0/).
+This remix is released under the same license: you may copy, redistribute and remix it; you must give credit, link the license and say what was
+changed; you may not use it commercially or behind a paywall. Changes are listed in README.txt. It is not endorsed by Step Modifications or the
+original author.
+
+Credits: isoku (Loot and Degradation), richmondb (the whetstone), psychosteve (the widget icons; the "new" icon set is a restyle of the same shapes).
+
+LootandDegradation.dll is separate work under the GNU General Public License 3.0 or later. Its license, its third-party notices and the link to its
+source are in SKSE/Plugins next to it. The GPL covers the DLL only; the rest of the mod stays under the original license.
+
+The full legal text of CC BY-NC-SA 4.0 follows.
