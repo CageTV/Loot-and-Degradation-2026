@@ -2,12 +2,12 @@ SpriggitSource:
   PackageName: Spriggit.Yaml.Skyrim
   Version: 0.41
 ModKey: LootandDegradation.esp
-GameRelease: SkyrimLE
+GameRelease: SkyrimSE
 ModHeader:
   Stats:
     Version: 1.7
-  Author: isoku
-  Description: 1.31
+  Author: isoku (original), CageTV (2026 remix)
+  Description: Loot and Degradation 2026 0.1.0 - remix of Loot and Degradation by isoku (CC BY-NC-SA)
   MasterReferences:
   - Master: Skyrim.esm
     FileSize: 0
