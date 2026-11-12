@@ -1,0 +1,92 @@
+FormKey: 00CF78:LootandDegradation.esp
+EditorID: _EDActivatePerk
+Name:
+  TargetLanguage: English
+  Value: Activate Perk
+Description:
+  TargetLanguage: English
+  Value: ''
+NumRanks: 1
+Playable: True
+Hidden: True
+Effects:
+- MutagenObjectType: PerkEntryPointAddActivateChoice
+  Conditions:
+  - RunOnTabIndex: 1
+    Conditions:
+    - MutagenObjectType: ConditionFloat
+      Unknown2: 91
+      Data:
+        MutagenObjectType: HasKeywordConditionData
+        Keyword: 013794:Skyrim.esm
+      ComparisonValue: 1
+    - MutagenObjectType: ConditionFloat
+      Flags:
+      - OR
+      Unknown2: 91
+      Data:
+        MutagenObjectType: GetIsClassConditionData
+        Class: 013259:Skyrim.esm
+      ComparisonValue: 1
+    - MutagenObjectType: ConditionFloat
+      Flags:
+      - OR
+      Unknown2: 91
+      Data:
+        MutagenObjectType: GetInFactionConditionData
+        Faction: 05091D:Skyrim.esm
+      ComparisonValue: 1
+    - MutagenObjectType: ConditionFloat
+      Unknown2: 91
+      Data:
+        MutagenObjectType: IsInListConditionData
+        FormList: 018C45:LootandDegradation.esp
+      ComparisonValue: 1
+  Flags:
+    Flags:
+    - RunImmediately
+  EntryPoint: Activate
+  PerkConditionTabCount: 2
+- MutagenObjectType: PerkEntryPointAddActivateChoice
+  Conditions:
+  - RunOnTabIndex: 1
+    Conditions:
+    - MutagenObjectType: ConditionFloat
+      Unknown2: 91
+      Data:
+        MutagenObjectType: GetGlobalValueConditionData
+        Global: 002855:LootandDegradation.esp
+      ComparisonValue: 1
+    - MutagenObjectType: ConditionFloat
+      Unknown2: 91
+      Data:
+        MutagenObjectType: HasKeywordConditionData
+        Keyword: 013794:Skyrim.esm
+      ComparisonValue: 1
+    - MutagenObjectType: ConditionFloat
+      Flags:
+      - OR
+      Unknown2: 91
+      Data:
+        MutagenObjectType: GetInFactionConditionData
+        Faction: 05C84E:Skyrim.esm
+      ComparisonValue: 1
+    - MutagenObjectType: ConditionFloat
+      Flags:
+      - OR
+      Unknown2: 91
+      Data:
+        MutagenObjectType: GetInFactionConditionData
+        Faction: 0BD738:Skyrim.esm
+      ComparisonValue: 1
+    - MutagenObjectType: ConditionFloat
+      Unknown2: 91
+      Data:
+        MutagenObjectType: GetPlayerTeammateConditionData
+      ComparisonValue: 1
+  Flags:
+    Flags:
+    - RunImmediately
+    FragmentIndex: 1
+  EntryPoint: Activate
+  PerkConditionTabCount: 2

@@ -1,0 +1,9 @@
+FormKey: 0125BC:LootandDegradation.esp
+EditorID: _EDTemperBodyTopic
+Name:
+  TargetLanguage: English
+  Value: Here is my cuirass. (<Global=_EDHasEquippedBody> gold)
+Branch: 0125B3:LootandDegradation.esp
+Quest: 012050:LootandDegradation.esp
+SubtypeName: CUST
+Unknown: 4072

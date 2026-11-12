@@ -1,0 +1,9 @@
+FormKey: 012B2E:LootandDegradation.esp
+EditorID: _EDTemperNoGearTopic
+Name:
+  TargetLanguage: English
+  Value: Never mind. There is nothing equipped for you to temper.
+Branch: 0125B3:LootandDegradation.esp
+Quest: 012050:LootandDegradation.esp
+SubtypeName: CUST
+Unknown: 4072

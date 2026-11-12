@@ -1,0 +1,9 @@
+FormKey: 01D268:LootandDegradation.esp
+EditorID: _EDTemperType2Topic
+Name:
+  TargetLanguage: English
+  Value: Temper my equipment one quality level at a time.
+Branch: 0125B3:LootandDegradation.esp
+Quest: 012050:LootandDegradation.esp
+SubtypeName: CUST
+Unknown: 4072

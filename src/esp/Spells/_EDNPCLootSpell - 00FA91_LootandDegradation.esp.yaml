@@ -1,0 +1,16 @@
+FormKey: 00FA91:LootandDegradation.esp
+EditorID: _EDNPCLootSpell
+Name:
+  TargetLanguage: English
+  Value: NPC Loot Spell
+EquipmentType: 013F44:Skyrim.esm
+Description:
+  TargetLanguage: English
+  Value: ''
+Flags:
+- ManualCostCalc
+- NoAbsorbOrReflect
+Type: Ability
+Effects:
+- BaseEffect: 00FA90:LootandDegradation.esp
+  Data: {}

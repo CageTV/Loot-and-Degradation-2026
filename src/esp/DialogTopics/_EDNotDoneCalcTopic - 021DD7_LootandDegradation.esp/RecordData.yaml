@@ -1,0 +1,9 @@
+FormKey: 021DD7:LootandDegradation.esp
+EditorID: _EDNotDoneCalcTopic
+Name:
+  TargetLanguage: English
+  Value: I need a bit more time to think!
+Branch: 0125B3:LootandDegradation.esp
+Quest: 012050:LootandDegradation.esp
+SubtypeName: CUST
+Unknown: 4072

@@ -1,0 +1,1620 @@
+FormKey: 00FA94:LootandDegradation.esp
+EditorID: _EDNPCLootQuest
+Flags:
+- 0x1000
+Priority: 99
+QuestFormVersion: 0
+NextAliasID: 285
+Aliases:
+- ID: 1
+  Name: Player
+  Flags: []
+  UniqueActor: 000007:Skyrim.esm
+  Conditions:
+  - MutagenObjectType: ConditionFloat
+    Data:
+      MutagenObjectType: GetStageDoneConditionData
+      Quest: 03372B:Skyrim.esm
+      Stage: 1000
+    ComparisonValue: 1
+  VoiceTypes: Null
+- ID: 3
+  Name: NPC
+  Flags:
+  - Optional
+  - MatchingRefInLoadedArea
+  - AllowReserved
+  - MatchingRefClosest
+  Conditions:
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsActorConditionData
+    ComparisonValue: 1
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsEssentialConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetDeadConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsRaceConditionData
+      Race: 10760A:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsCurrentPackageConditionData
+      Package: 04B037:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 0D205E:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 05030B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 10EAD7:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 0ED5F3:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasMagicEffectKeywordConditionData
+      Keyword: 02482B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetInFactionConditionData
+      Faction: 0F2073:Skyrim.esm
+  Spells:
+  - 00FA91:LootandDegradation.esp
+  VoiceTypes: Null
+- ID: 284
+  Name: NPC023
+  Flags:
+  - Optional
+  - MatchingRefInLoadedArea
+  - AllowReserved
+  - MatchingRefClosest
+  Conditions:
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsActorConditionData
+    ComparisonValue: 1
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsEssentialConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetDeadConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsRaceConditionData
+      Race: 10760A:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsCurrentPackageConditionData
+      Package: 04B037:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 0D205E:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 05030B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 10EAD7:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 0ED5F3:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasMagicEffectKeywordConditionData
+      Keyword: 02482B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetInFactionConditionData
+      Faction: 0F2073:Skyrim.esm
+  Spells:
+  - 00FA91:LootandDegradation.esp
+  VoiceTypes: Null
+- ID: 283
+  Name: NPC022
+  Flags:
+  - Optional
+  - MatchingRefInLoadedArea
+  - AllowReserved
+  - MatchingRefClosest
+  Conditions:
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsActorConditionData
+    ComparisonValue: 1
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsEssentialConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetDeadConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsRaceConditionData
+      Race: 10760A:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsCurrentPackageConditionData
+      Package: 04B037:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 0D205E:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 05030B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 10EAD7:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 0ED5F3:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasMagicEffectKeywordConditionData
+      Keyword: 02482B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetInFactionConditionData
+      Faction: 0F2073:Skyrim.esm
+  Spells:
+  - 00FA91:LootandDegradation.esp
+  VoiceTypes: Null
+- ID: 282
+  Name: NPC021
+  Flags:
+  - Optional
+  - MatchingRefInLoadedArea
+  - AllowReserved
+  - MatchingRefClosest
+  Conditions:
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsActorConditionData
+    ComparisonValue: 1
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsEssentialConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetDeadConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsRaceConditionData
+      Race: 10760A:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsCurrentPackageConditionData
+      Package: 04B037:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 0D205E:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 05030B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 10EAD7:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 0ED5F3:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasMagicEffectKeywordConditionData
+      Keyword: 02482B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetInFactionConditionData
+      Faction: 0F2073:Skyrim.esm
+  Spells:
+  - 00FA91:LootandDegradation.esp
+  VoiceTypes: Null
+- ID: 281
+  Name: NPC020
+  Flags:
+  - Optional
+  - MatchingRefInLoadedArea
+  - AllowReserved
+  - MatchingRefClosest
+  Conditions:
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsActorConditionData
+    ComparisonValue: 1
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsEssentialConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetDeadConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsRaceConditionData
+      Race: 10760A:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsCurrentPackageConditionData
+      Package: 04B037:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 0D205E:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 05030B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 10EAD7:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 0ED5F3:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasMagicEffectKeywordConditionData
+      Keyword: 02482B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetInFactionConditionData
+      Faction: 0F2073:Skyrim.esm
+  Spells:
+  - 00FA91:LootandDegradation.esp
+  VoiceTypes: Null
+- ID: 280
+  Name: NPC019
+  Flags:
+  - Optional
+  - MatchingRefInLoadedArea
+  - AllowReserved
+  - MatchingRefClosest
+  Conditions:
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsActorConditionData
+    ComparisonValue: 1
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsEssentialConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetDeadConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsRaceConditionData
+      Race: 10760A:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsCurrentPackageConditionData
+      Package: 04B037:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 0D205E:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 05030B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 10EAD7:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 0ED5F3:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasMagicEffectKeywordConditionData
+      Keyword: 02482B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetInFactionConditionData
+      Faction: 0F2073:Skyrim.esm
+  Spells:
+  - 00FA91:LootandDegradation.esp
+  VoiceTypes: Null
+- ID: 279
+  Name: NPC018
+  Flags:
+  - Optional
+  - MatchingRefInLoadedArea
+  - AllowReserved
+  - MatchingRefClosest
+  Conditions:
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsActorConditionData
+    ComparisonValue: 1
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsEssentialConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetDeadConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsRaceConditionData
+      Race: 10760A:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsCurrentPackageConditionData
+      Package: 04B037:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 0D205E:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 05030B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 10EAD7:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 0ED5F3:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasMagicEffectKeywordConditionData
+      Keyword: 02482B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetInFactionConditionData
+      Faction: 0F2073:Skyrim.esm
+  Spells:
+  - 00FA91:LootandDegradation.esp
+  VoiceTypes: Null
+- ID: 278
+  Name: NPC017
+  Flags:
+  - Optional
+  - MatchingRefInLoadedArea
+  - AllowReserved
+  - MatchingRefClosest
+  Conditions:
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsActorConditionData
+    ComparisonValue: 1
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsEssentialConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetDeadConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsRaceConditionData
+      Race: 10760A:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsCurrentPackageConditionData
+      Package: 04B037:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 0D205E:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 05030B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 10EAD7:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 0ED5F3:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasMagicEffectKeywordConditionData
+      Keyword: 02482B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetInFactionConditionData
+      Faction: 0F2073:Skyrim.esm
+  Spells:
+  - 00FA91:LootandDegradation.esp
+  VoiceTypes: Null
+- ID: 277
+  Name: NPC016
+  Flags:
+  - Optional
+  - MatchingRefInLoadedArea
+  - AllowReserved
+  - MatchingRefClosest
+  Conditions:
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsActorConditionData
+    ComparisonValue: 1
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsEssentialConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetDeadConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsRaceConditionData
+      Race: 10760A:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsCurrentPackageConditionData
+      Package: 04B037:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 0D205E:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 05030B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 10EAD7:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 0ED5F3:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasMagicEffectKeywordConditionData
+      Keyword: 02482B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetInFactionConditionData
+      Faction: 0F2073:Skyrim.esm
+  Spells:
+  - 00FA91:LootandDegradation.esp
+  VoiceTypes: Null
+- ID: 276
+  Name: NPC015
+  Flags:
+  - Optional
+  - MatchingRefInLoadedArea
+  - AllowReserved
+  - MatchingRefClosest
+  Conditions:
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsActorConditionData
+    ComparisonValue: 1
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsEssentialConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetDeadConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsRaceConditionData
+      Race: 10760A:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsCurrentPackageConditionData
+      Package: 04B037:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 0D205E:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 05030B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 10EAD7:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 0ED5F3:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasMagicEffectKeywordConditionData
+      Keyword: 02482B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetInFactionConditionData
+      Faction: 0F2073:Skyrim.esm
+  Spells:
+  - 00FA91:LootandDegradation.esp
+  VoiceTypes: Null
+- ID: 275
+  Name: NPC014
+  Flags:
+  - Optional
+  - MatchingRefInLoadedArea
+  - AllowReserved
+  - MatchingRefClosest
+  Conditions:
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsActorConditionData
+    ComparisonValue: 1
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsEssentialConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetDeadConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsRaceConditionData
+      Race: 10760A:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsCurrentPackageConditionData
+      Package: 04B037:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 0D205E:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 05030B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 10EAD7:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 0ED5F3:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasMagicEffectKeywordConditionData
+      Keyword: 02482B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetInFactionConditionData
+      Faction: 0F2073:Skyrim.esm
+  Spells:
+  - 00FA91:LootandDegradation.esp
+  VoiceTypes: Null
+- ID: 274
+  Name: NPC013
+  Flags:
+  - Optional
+  - MatchingRefInLoadedArea
+  - AllowReserved
+  - MatchingRefClosest
+  Conditions:
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsActorConditionData
+    ComparisonValue: 1
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsEssentialConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetDeadConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsRaceConditionData
+      Race: 10760A:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsCurrentPackageConditionData
+      Package: 04B037:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 0D205E:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 05030B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 10EAD7:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 0ED5F3:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasMagicEffectKeywordConditionData
+      Keyword: 02482B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetInFactionConditionData
+      Faction: 0F2073:Skyrim.esm
+  Spells:
+  - 00FA91:LootandDegradation.esp
+  VoiceTypes: Null
+- ID: 273
+  Name: NPC012
+  Flags:
+  - Optional
+  - MatchingRefInLoadedArea
+  - AllowReserved
+  - MatchingRefClosest
+  Conditions:
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsActorConditionData
+    ComparisonValue: 1
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsEssentialConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetDeadConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsRaceConditionData
+      Race: 10760A:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsCurrentPackageConditionData
+      Package: 04B037:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 0D205E:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 05030B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 10EAD7:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 0ED5F3:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasMagicEffectKeywordConditionData
+      Keyword: 02482B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetInFactionConditionData
+      Faction: 0F2073:Skyrim.esm
+  Spells:
+  - 00FA91:LootandDegradation.esp
+  VoiceTypes: Null
+- ID: 272
+  Name: NPC011
+  Flags:
+  - Optional
+  - MatchingRefInLoadedArea
+  - AllowReserved
+  - MatchingRefClosest
+  Conditions:
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsActorConditionData
+    ComparisonValue: 1
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsEssentialConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetDeadConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsRaceConditionData
+      Race: 10760A:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsCurrentPackageConditionData
+      Package: 04B037:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 0D205E:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 05030B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 10EAD7:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 0ED5F3:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasMagicEffectKeywordConditionData
+      Keyword: 02482B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetInFactionConditionData
+      Faction: 0F2073:Skyrim.esm
+  Spells:
+  - 00FA91:LootandDegradation.esp
+  VoiceTypes: Null
+- ID: 271
+  Name: NPC010
+  Flags:
+  - Optional
+  - MatchingRefInLoadedArea
+  - AllowReserved
+  - MatchingRefClosest
+  Conditions:
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsActorConditionData
+    ComparisonValue: 1
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsEssentialConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetDeadConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsRaceConditionData
+      Race: 10760A:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsCurrentPackageConditionData
+      Package: 04B037:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 0D205E:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 05030B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 10EAD7:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 0ED5F3:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasMagicEffectKeywordConditionData
+      Keyword: 02482B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetInFactionConditionData
+      Faction: 0F2073:Skyrim.esm
+  Spells:
+  - 00FA91:LootandDegradation.esp
+  VoiceTypes: Null
+- ID: 270
+  Name: NPC009
+  Flags:
+  - Optional
+  - MatchingRefInLoadedArea
+  - AllowReserved
+  - MatchingRefClosest
+  Conditions:
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsActorConditionData
+    ComparisonValue: 1
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsEssentialConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetDeadConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsRaceConditionData
+      Race: 10760A:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsCurrentPackageConditionData
+      Package: 04B037:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 0D205E:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 05030B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 10EAD7:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 0ED5F3:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasMagicEffectKeywordConditionData
+      Keyword: 02482B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetInFactionConditionData
+      Faction: 0F2073:Skyrim.esm
+  Spells:
+  - 00FA91:LootandDegradation.esp
+  VoiceTypes: Null
+- ID: 269
+  Name: NPC008
+  Flags:
+  - Optional
+  - MatchingRefInLoadedArea
+  - AllowReserved
+  - MatchingRefClosest
+  Conditions:
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsActorConditionData
+    ComparisonValue: 1
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsEssentialConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetDeadConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsRaceConditionData
+      Race: 10760A:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsCurrentPackageConditionData
+      Package: 04B037:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 0D205E:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 05030B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 10EAD7:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 0ED5F3:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasMagicEffectKeywordConditionData
+      Keyword: 02482B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetInFactionConditionData
+      Faction: 0F2073:Skyrim.esm
+  Spells:
+  - 00FA91:LootandDegradation.esp
+  VoiceTypes: Null
+- ID: 268
+  Name: NPC007
+  Flags:
+  - Optional
+  - MatchingRefInLoadedArea
+  - AllowReserved
+  - MatchingRefClosest
+  Conditions:
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsActorConditionData
+    ComparisonValue: 1
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsEssentialConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetDeadConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsRaceConditionData
+      Race: 10760A:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsCurrentPackageConditionData
+      Package: 04B037:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 0D205E:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 05030B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 10EAD7:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 0ED5F3:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasMagicEffectKeywordConditionData
+      Keyword: 02482B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetInFactionConditionData
+      Faction: 0F2073:Skyrim.esm
+  Spells:
+  - 00FA91:LootandDegradation.esp
+  VoiceTypes: Null
+- ID: 267
+  Name: NPC006
+  Flags:
+  - Optional
+  - MatchingRefInLoadedArea
+  - AllowReserved
+  - MatchingRefClosest
+  Conditions:
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsActorConditionData
+    ComparisonValue: 1
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsEssentialConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetDeadConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsRaceConditionData
+      Race: 10760A:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsCurrentPackageConditionData
+      Package: 04B037:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 0D205E:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 05030B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 10EAD7:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 0ED5F3:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasMagicEffectKeywordConditionData
+      Keyword: 02482B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetInFactionConditionData
+      Faction: 0F2073:Skyrim.esm
+  Spells:
+  - 00FA91:LootandDegradation.esp
+  VoiceTypes: Null
+- ID: 266
+  Name: NPC005
+  Flags:
+  - Optional
+  - MatchingRefInLoadedArea
+  - AllowReserved
+  - MatchingRefClosest
+  Conditions:
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsActorConditionData
+    ComparisonValue: 1
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsEssentialConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetDeadConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsRaceConditionData
+      Race: 10760A:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsCurrentPackageConditionData
+      Package: 04B037:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 0D205E:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 05030B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 10EAD7:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 0ED5F3:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasMagicEffectKeywordConditionData
+      Keyword: 02482B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetInFactionConditionData
+      Faction: 0F2073:Skyrim.esm
+  Spells:
+  - 00FA91:LootandDegradation.esp
+  VoiceTypes: Null
+- ID: 265
+  Name: NPC004
+  Flags:
+  - Optional
+  - MatchingRefInLoadedArea
+  - AllowReserved
+  - MatchingRefClosest
+  Conditions:
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsActorConditionData
+    ComparisonValue: 1
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsEssentialConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetDeadConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsRaceConditionData
+      Race: 10760A:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsCurrentPackageConditionData
+      Package: 04B037:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 0D205E:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 05030B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 10EAD7:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 0ED5F3:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasMagicEffectKeywordConditionData
+      Keyword: 02482B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetInFactionConditionData
+      Faction: 0F2073:Skyrim.esm
+  Spells:
+  - 00FA91:LootandDegradation.esp
+  VoiceTypes: Null
+- ID: 264
+  Name: NPC003
+  Flags:
+  - Optional
+  - MatchingRefInLoadedArea
+  - AllowReserved
+  - MatchingRefClosest
+  Conditions:
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsActorConditionData
+    ComparisonValue: 1
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsEssentialConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetDeadConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsRaceConditionData
+      Race: 10760A:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsCurrentPackageConditionData
+      Package: 04B037:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 0D205E:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 05030B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 10EAD7:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 0ED5F3:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasMagicEffectKeywordConditionData
+      Keyword: 02482B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetInFactionConditionData
+      Faction: 0F2073:Skyrim.esm
+  Spells:
+  - 00FA91:LootandDegradation.esp
+  VoiceTypes: Null
+- ID: 263
+  Name: NPC002
+  Flags:
+  - Optional
+  - MatchingRefInLoadedArea
+  - AllowReserved
+  - MatchingRefClosest
+  Conditions:
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsActorConditionData
+    ComparisonValue: 1
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsEssentialConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetDeadConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsRaceConditionData
+      Race: 10760A:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsCurrentPackageConditionData
+      Package: 04B037:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 0D205E:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 05030B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 10EAD7:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 0ED5F3:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasMagicEffectKeywordConditionData
+      Keyword: 02482B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetInFactionConditionData
+      Faction: 0F2073:Skyrim.esm
+  Spells:
+  - 00FA91:LootandDegradation.esp
+  VoiceTypes: Null
+- ID: 262
+  Name: NPC001
+  Flags:
+  - Optional
+  - MatchingRefInLoadedArea
+  - AllowReserved
+  - MatchingRefClosest
+  Conditions:
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsActorConditionData
+    ComparisonValue: 1
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsEssentialConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetDeadConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsRaceConditionData
+      Race: 10760A:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsCurrentPackageConditionData
+      Package: 04B037:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 0D205E:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 05030B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 10EAD7:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 0ED5F3:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasMagicEffectKeywordConditionData
+      Keyword: 02482B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetInFactionConditionData
+      Faction: 0F2073:Skyrim.esm
+  Spells:
+  - 00FA91:LootandDegradation.esp
+  VoiceTypes: Null
+- ID: 261
+  Name: NPC000
+  Flags:
+  - Optional
+  - MatchingRefInLoadedArea
+  - AllowReserved
+  - MatchingRefClosest
+  Conditions:
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsActorConditionData
+    ComparisonValue: 1
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: IsEssentialConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetDeadConditionData
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsRaceConditionData
+      Race: 10760A:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetIsCurrentPackageConditionData
+      Package: 04B037:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 0D205E:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 05030B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasKeywordConditionData
+      Keyword: 10EAD7:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasSpellConditionData
+      Spell: 0ED5F3:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: HasMagicEffectKeywordConditionData
+      Keyword: 02482B:Skyrim.esm
+  - MutagenObjectType: ConditionFloat
+    Unknown2: 12097
+    Data:
+      MutagenObjectType: GetInFactionConditionData
+      Faction: 0F2073:Skyrim.esm
+  Spells:
+  - 00FA91:LootandDegradation.esp
+  VoiceTypes: Null

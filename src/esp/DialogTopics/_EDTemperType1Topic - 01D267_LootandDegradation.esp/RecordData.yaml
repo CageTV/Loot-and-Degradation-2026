@@ -1,0 +1,9 @@
+FormKey: 01D267:LootandDegradation.esp
+EditorID: _EDTemperType1Topic
+Name:
+  TargetLanguage: English
+  Value: Temper my equipment to the best of your abilities.
+Branch: 0125B3:LootandDegradation.esp
+Quest: 012050:LootandDegradation.esp
+SubtypeName: CUST
+Unknown: 4072

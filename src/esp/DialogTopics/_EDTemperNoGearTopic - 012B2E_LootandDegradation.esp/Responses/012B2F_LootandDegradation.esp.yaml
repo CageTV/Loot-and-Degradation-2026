@@ -1,0 +1,51 @@
+FormKey: 012B2F:LootandDegradation.esp
+Flags:
+  Flags:
+  - Goodbye
+PreviousDialog: Null
+FavorLevel: None
+LinkTo:
+- 0125B4:LootandDegradation.esp
+ResponseData: 06CB29:Skyrim.esm
+Conditions:
+- MutagenObjectType: ConditionFloat
+  Unknown2: 12042
+  Data:
+    MutagenObjectType: GetGlobalValueConditionData
+    Global: 021DD6:LootandDegradation.esp
+  ComparisonValue: 1
+- MutagenObjectType: ConditionFloat
+  Unknown2: 12042
+  Data:
+    MutagenObjectType: GetGlobalValueConditionData
+    Global: 013094:LootandDegradation.esp
+- MutagenObjectType: ConditionFloat
+  Unknown2: 12042
+  Data:
+    MutagenObjectType: GetGlobalValueConditionData
+    Global: 0125C5:LootandDegradation.esp
+- MutagenObjectType: ConditionFloat
+  Unknown2: 12042
+  Data:
+    MutagenObjectType: GetGlobalValueConditionData
+    Global: 0125C7:LootandDegradation.esp
+- MutagenObjectType: ConditionFloat
+  Unknown2: 12042
+  Data:
+    MutagenObjectType: GetGlobalValueConditionData
+    Global: 0125C6:LootandDegradation.esp
+- MutagenObjectType: ConditionFloat
+  Unknown2: 12042
+  Data:
+    MutagenObjectType: GetGlobalValueConditionData
+    Global: 0125C4:LootandDegradation.esp
+- MutagenObjectType: ConditionFloat
+  Unknown2: 12042
+  Data:
+    MutagenObjectType: GetGlobalValueConditionData
+    Global: 0125C2:LootandDegradation.esp
+- MutagenObjectType: ConditionFloat
+  Unknown2: 12042
+  Data:
+    MutagenObjectType: GetGlobalValueConditionData
+    Global: 0125C3:LootandDegradation.esp

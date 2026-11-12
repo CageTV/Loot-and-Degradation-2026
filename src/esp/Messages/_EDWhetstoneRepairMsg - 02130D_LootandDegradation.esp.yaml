@@ -1,0 +1,21 @@
+FormKey: 02130D:LootandDegradation.esp
+EditorID: _EDWhetstoneRepairMsg
+Description:
+  TargetLanguage: English
+  Value: While not as effective as a grindstone or workbench, this combination of whetstone, hammer and sinew can still get the job done when needed.
+INAM: 0x00000000
+Flags:
+- MessageBox
+MenuButtons:
+- Text:
+    TargetLanguage: English
+    Value: Improve Weapons
+- Text:
+    TargetLanguage: English
+    Value: Improve Armor
+- Text:
+    TargetLanguage: English
+    Value: Damage Equipment
+- Text:
+    TargetLanguage: English
+    Value: Exit

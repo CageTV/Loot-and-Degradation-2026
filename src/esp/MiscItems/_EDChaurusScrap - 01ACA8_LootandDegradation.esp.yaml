@@ -1,0 +1,21 @@
+FormKey: 01ACA8:LootandDegradation.esp
+EditorID: _EDChaurusScrap
+Name:
+  TargetLanguage: English
+  Value: Chaurus Chitin Scrap
+Model:
+  File: lootanddegradation\metalscrap.nif
+  Data: 0x020000000000000000000000
+  AlternateTextures:
+  - Name: DwarvenScrap_3
+    NewTexture: 01ACB0:LootandDegradation.esp
+    Index: 2
+  - Name: DwarvenScrap_2
+    NewTexture: 01ACB0:LootandDegradation.esp
+    Index: 1
+  - Name: DwarvenScrap2:0
+    NewTexture: 01ACB0:LootandDegradation.esp
+Keywords:
+- 0914EB:Skyrim.esm
+Value: 14
+Weight: 1.3

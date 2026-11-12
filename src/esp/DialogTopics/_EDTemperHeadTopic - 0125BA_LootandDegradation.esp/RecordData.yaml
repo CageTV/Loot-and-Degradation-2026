@@ -1,0 +1,9 @@
+FormKey: 0125BA:LootandDegradation.esp
+EditorID: _EDTemperHeadTopic
+Name:
+  TargetLanguage: English
+  Value: Here is my headpiece. (<Global=_EDHasEquippedHead> gold)
+Branch: 0125B3:LootandDegradation.esp
+Quest: 012050:LootandDegradation.esp
+SubtypeName: CUST
+Unknown: 4072

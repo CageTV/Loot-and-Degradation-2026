@@ -1,0 +1,9 @@
+FormKey: 0125B8:LootandDegradation.esp
+EditorID: _EDTemperShieldTopic
+Name:
+  TargetLanguage: English
+  Value: Here is my shield. (<Global=_EDHasEquippedShield> gold)
+Branch: 0125B3:LootandDegradation.esp
+Quest: 012050:LootandDegradation.esp
+SubtypeName: CUST
+Unknown: 4072

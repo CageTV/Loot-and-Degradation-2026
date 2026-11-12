@@ -1,0 +1,8 @@
+FormKey: 016124:LootandDegradation.esp
+EditorID: _EDIgnoreFaction
+Flags:
+- HiddenFromPC
+CrimeValues:
+  Arrest: True
+  AttackOnSight: True
+VendorValues: {}

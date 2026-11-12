@@ -1,0 +1,9 @@
+FormKey: 013B61:LootandDegradation.esp
+EditorID: _EDTemperLevel2Topic
+Name:
+  TargetLanguage: English
+  Value: A journeyman at work! I will have more equipment for you soon.
+Branch: 0125B3:LootandDegradation.esp
+Quest: 012050:LootandDegradation.esp
+SubtypeName: CUST
+Unknown: 4072

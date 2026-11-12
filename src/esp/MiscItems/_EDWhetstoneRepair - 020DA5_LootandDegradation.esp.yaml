@@ -1,0 +1,14 @@
+FormKey: 020DA5:LootandDegradation.esp
+EditorID: _EDWhetstoneRepair
+Name:
+  TargetLanguage: English
+  Value: Equipment Repair Kit
+Model:
+  File: lootanddegradation\whetstone.nif
+  Data: 0x020000000000000000000000
+PickUpSound: 03C7BA:Skyrim.esm
+PutDownSound: 03C7B9:Skyrim.esm
+Keywords:
+- 0914EE:Skyrim.esm
+Value: 28
+Weight: 5

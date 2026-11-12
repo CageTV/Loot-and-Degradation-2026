@@ -1,0 +1,21 @@
+FormKey: 01A739:LootandDegradation.esp
+EditorID: _EDOrichScrap
+Name:
+  TargetLanguage: English
+  Value: Orichalcum Scrap Metal
+Model:
+  File: lootanddegradation\metalscrap.nif
+  Data: 0x020000000000000000000000
+  AlternateTextures:
+  - Name: DwarvenScrap_3
+    NewTexture: 01ACAE:LootandDegradation.esp
+    Index: 2
+  - Name: DwarvenScrap_2
+    NewTexture: 01ACAE:LootandDegradation.esp
+    Index: 1
+  - Name: DwarvenScrap2:0
+    NewTexture: 01ACAE:LootandDegradation.esp
+Keywords:
+- 0914EC:Skyrim.esm
+Value: 20
+Weight: 0.5

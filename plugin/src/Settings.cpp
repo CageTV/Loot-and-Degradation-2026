@@ -1,0 +1,94 @@
+#include "PCH.h"
+#include "Settings.h"
+
+namespace Settings
+{
+	namespace
+	{
+		Data g_data;
+
+		std::filesystem::path IniPath()
+		{
+			return std::filesystem::path("Data/SKSE/Plugins/LootandDegradation.ini");
+		}
+
+		std::string Trim(std::string s)
+		{
+			const auto b = s.find_first_not_of(" \t\r\n");
+			if (b == std::string::npos) {
+				return {};
+			}
+			const auto e = s.find_last_not_of(" \t\r\n");
+			return s.substr(b, e - b + 1);
+		}
+	}
+
+	Data& Get()
+	{
+		return g_data;
+	}
+
+	void Load()
+	{
+		std::ifstream in(IniPath());
+		if (!in) {
+			Save();
+			SKSE::log::info("Settings: no ini found, wrote the defaults to {}", IniPath().string());
+			return;
+		}
+		std::unordered_map<std::string, std::string> kv;
+		std::string                                   line;
+		while (std::getline(in, line)) {
+			line = Trim(line);
+			if (line.empty() || line[0] == ';' || line[0] == '#' || line[0] == '[') {
+				continue;
+			}
+			const auto eq = line.find('=');
+			if (eq == std::string::npos) {
+				continue;
+			}
+			kv[Trim(line.substr(0, eq))] = Trim(line.substr(eq + 1));
+		}
+		auto getI = [&](const char* k, int& v) { if (auto it = kv.find(k); it != kv.end()) { try { v = std::stoi(it->second); } catch (...) {} } };
+		auto getF = [&](const char* k, float& v) { if (auto it = kv.find(k); it != kv.end()) { try { v = std::stof(it->second); } catch (...) {} } };
+		auto getB = [&](const char* k, bool& v) { if (auto it = kv.find(k); it != kv.end()) { v = it->second == "1" || it->second == "true"; } };
+		auto& d = g_data;
+		getI("DecayChance", d.decayChance);
+		getF("DegradeMult", d.degradeMult);
+		getI("FollowerDecayChance", d.followerDecayChance);
+		getF("FollowerDegradeMult", d.followerDegradeMult);
+		getF("BreakChance", d.breakChance);
+		getI("BreakType", d.breakType);
+		getI("BreakableItems", d.breakableItems);
+		getB("RequiemBreak", d.requiemBreak);
+		getI("DegradeText", d.degradeText);
+		getF("Cloth", d.cloth);
+		getF("LeatherWood", d.leatherWood);
+		getF("Iron", d.iron);
+		getF("Steel", d.steel);
+		getF("Elven", d.elven);
+		getF("Falmer", d.falmer);
+		getF("Dwarven", d.dwarven);
+		getF("Glass", d.glass);
+		getF("Orcish", d.orcish);
+		getF("Dragon", d.dragon);
+		getF("DaedricEbony", d.daedricEbony);
+		d.decayChance = std::clamp(d.decayChance, 0, 10000);
+		SKSE::log::info("Settings: decay chance {}, degrade x{}, break chance {}", d.decayChance, d.degradeMult, d.breakChance);
+	}
+
+	void Save()
+	{
+		std::filesystem::create_directories(IniPath().parent_path());
+		std::ofstream out(IniPath(), std::ios::trunc);
+		const auto&   d = g_data;
+		out << "; Loot and Degradation 2026 (a remix of Loot and Degradation by isoku, CC BY-NC-SA 4.0)\n[Degradation]\n";
+		out << "DecayChance=" << d.decayChance << "\nDegradeMult=" << d.degradeMult << "\nFollowerDecayChance=" << d.followerDecayChance
+			<< "\nFollowerDegradeMult=" << d.followerDegradeMult << "\nDegradeText=" << d.degradeText << "\n\n[Breaking]\n";
+		out << "BreakChance=" << d.breakChance << "\nBreakType=" << d.breakType << "\nBreakableItems=" << d.breakableItems
+			<< "\nRequiemBreak=" << (d.requiemBreak ? 1 : 0) << "\n\n[Durability]\n";
+		out << "Cloth=" << d.cloth << "\nLeatherWood=" << d.leatherWood << "\nIron=" << d.iron << "\nSteel=" << d.steel << "\nElven=" << d.elven
+			<< "\nFalmer=" << d.falmer << "\nDwarven=" << d.dwarven << "\nGlass=" << d.glass << "\nOrcish=" << d.orcish << "\nDragon=" << d.dragon
+			<< "\nDaedricEbony=" << d.daedricEbony << "\n";
+	}
+}

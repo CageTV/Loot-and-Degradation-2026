@@ -1,0 +1,10 @@
+FormKey: 01ACAE:LootandDegradation.esp
+EditorID: _EDOrichScrapTxt
+ObjectBounds:
+  First: -8, -30, -20
+  Second: 7, 29, 19
+Diffuse: lootanddegradation\metalscrap_dark.dds
+NormalOrGloss: lootanddegradation\metalscrap_n.dds
+EnvironmentMaskOrSubsurfaceTint: lootanddegradation\metalscrap_m.dds
+Environment: cubemaps\ore_orich_e.dds
+Flags: []

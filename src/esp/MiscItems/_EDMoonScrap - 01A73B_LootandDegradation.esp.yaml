@@ -1,0 +1,21 @@
+FormKey: 01A73B:LootandDegradation.esp
+EditorID: _EDMoonScrap
+Name:
+  TargetLanguage: English
+  Value: Moonstone Scrap
+Model:
+  File: lootanddegradation\metalscrap.nif
+  Data: 0x020000000000000000000000
+  AlternateTextures:
+  - Name: DwarvenScrap_3
+    NewTexture: 01ACAD:LootandDegradation.esp
+    Index: 2
+  - Name: DwarvenScrap_2
+    NewTexture: 01ACAD:LootandDegradation.esp
+    Index: 1
+  - Name: DwarvenScrap2:0
+    NewTexture: 01ACAD:LootandDegradation.esp
+Keywords:
+- 0914EC:Skyrim.esm
+Value: 31
+Weight: 0.5

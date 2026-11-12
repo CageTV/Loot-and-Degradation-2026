@@ -1,0 +1,7 @@
+FormKey: 0125B3:LootandDegradation.esp
+EditorID: _EDTemper
+Quest: 012050:LootandDegradation.esp
+Category: Player
+Flags:
+- TopLevel
+StartingTopic: 0125B4:LootandDegradation.esp

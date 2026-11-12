@@ -1,0 +1,16 @@
+FormKey: 01A73F:LootandDegradation.esp
+EditorID: _EDRecipeIngotSteelScrap
+Items:
+- Item:
+    Item: 01A738:LootandDegradation.esp
+    Count: 2
+Conditions:
+- MutagenObjectType: ConditionFloat
+  CompareOperator: GreaterThan
+  Unknown2: 84
+  Data:
+    MutagenObjectType: GetItemCountConditionData
+    ItemOrList: 01A738:LootandDegradation.esp
+CreatedObject: 05ACE5:Skyrim.esm
+WorkbenchKeyword: 0A5CCE:Skyrim.esm
+CreatedObjectCount: 1

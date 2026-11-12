@@ -1,0 +1,22 @@
+FormKey: 00FA90:LootandDegradation.esp
+EditorID: _EDNPCLootScript
+Name:
+  TargetLanguage: English
+  Value: NPC Loot Script
+MenuDisplayObject: 0435A5:Skyrim.esm
+Flags:
+- NoHitEvent
+- NoDuration
+- NoArea
+- HideInUI
+- Painless
+- NoDeathDispel
+Unknown1: 29545
+Archetype:
+  MutagenObjectType: MagicEffectArchetype
+  Type: Script
+DualCastScale: 1
+CastingSoundLevel: Normal
+Description:
+  TargetLanguage: English
+  Value: ''

@@ -1,0 +1,62 @@
+FormKey: 0135F7:LootandDegradation.esp
+IsCompressed: True
+MajorRecordFlagsRaw: 262144
+EditorID: _EDEmptyCell
+SkyrimMajorRecordFlags:
+- Compressed
+Flags:
+- IsInteriorCell
+Lighting:
+  AmbientColor: '#00000000'
+  DirectionalColor: '#00000000'
+  FogNearColor: '#00000000'
+  DirectionalFade: 1
+  FogPower: 1
+  AmbientColors:
+    DirectionalXPlus: '#00FFFFFF'
+    DirectionalXMinus: '#00FFFFFF'
+    DirectionalYPlus: '#00FFFFFF'
+    DirectionalYMinus: '#00FFFFFF'
+    DirectionalZPlus: '#00FFFFFF'
+    DirectionalZMinus: '#00FFFFFF'
+    Specular: '#00000000'
+    Scale: 1
+  FogFarColor: '#00000000'
+  FogMax: 1
+  Inherits:
+  - AmbientColor
+  - DirectionalColor
+  - FogColor
+  - FogNear
+  - FogFar
+  - ClipDistance
+  - FogPower
+  - FogMax
+  - LightFadeDistances
+WaterHeight: 3.4028235E+38
+Persistent:
+- MutagenObjectType: PlacedObject
+  FormKey: 0135F9:LootandDegradation.esp
+  MajorRecordFlagsRaw: 1024
+  SkyrimMajorRecordFlags:
+  - 0x400
+  Base: 0135F8:LootandDegradation.esp
+  Placement: {}
+- MutagenObjectType: PlacedObject
+  FormKey: 02130B:LootandDegradation.esp
+  MajorRecordFlagsRaw: 1024
+  SkyrimMajorRecordFlags:
+  - 0x400
+  Base: 0D932F:Skyrim.esm
+  Placement:
+    Position: 0, 59.73479, -50.580048
+- MutagenObjectType: PlacedObject
+  FormKey: 02130C:LootandDegradation.esp
+  MajorRecordFlagsRaw: 1024
+  SkyrimMajorRecordFlags:
+  - 0x400
+  Base: 06E9C2:Skyrim.esm
+  Placement:
+    Position: 20.489761, -20.91665, -41.95529
+MajorFlags:
+- 0x40000

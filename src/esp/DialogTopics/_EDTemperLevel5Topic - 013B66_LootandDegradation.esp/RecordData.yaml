@@ -1,0 +1,9 @@
+FormKey: 013B66:LootandDegradation.esp
+EditorID: _EDTemperLevel5Topic
+Name:
+  TargetLanguage: English
+  Value: You have the technique of an artisan. I will continue to help hone your skills.
+Branch: 0125B3:LootandDegradation.esp
+Quest: 012050:LootandDegradation.esp
+SubtypeName: CUST
+Unknown: 4072

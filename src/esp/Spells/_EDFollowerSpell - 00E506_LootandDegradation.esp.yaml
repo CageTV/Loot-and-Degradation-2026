@@ -1,0 +1,22 @@
+FormKey: 00E506:LootandDegradation.esp
+EditorID: _EDFollowerSpell
+Name:
+  TargetLanguage: English
+  Value: Follower Spell
+EquipmentType: 013F44:Skyrim.esm
+Description:
+  TargetLanguage: English
+  Value: ''
+Flags:
+- ManualCostCalc
+- NoAbsorbOrReflect
+Type: Ability
+Effects:
+- BaseEffect: 00E505:LootandDegradation.esp
+  Data: {}
+  Conditions:
+  - MutagenObjectType: ConditionFloat
+    Data:
+      MutagenObjectType: GetGlobalValueConditionData
+      Global: 002855:LootandDegradation.esp
+    ComparisonValue: 1

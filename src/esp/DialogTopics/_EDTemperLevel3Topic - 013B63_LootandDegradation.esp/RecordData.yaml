@@ -1,0 +1,9 @@
+FormKey: 013B63:LootandDegradation.esp
+EditorID: _EDTemperLevel3Topic
+Name:
+  TargetLanguage: English
+  Value: You are getting fairly adept at tempering equipment.
+Branch: 0125B3:LootandDegradation.esp
+Quest: 012050:LootandDegradation.esp
+SubtypeName: CUST
+Unknown: 4072

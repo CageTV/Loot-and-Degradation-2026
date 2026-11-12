@@ -1,0 +1,33 @@
+FormKey: 023365:LootandDegradation.esp
+EditorID: _EDWhetstoneDegradeMsg
+Description:
+  TargetLanguage: English
+  Value: Degrade the selected item by one tier.
+INAM: 0x00000000
+Flags:
+- MessageBox
+MenuButtons:
+- Text:
+    TargetLanguage: English
+    Value: Headpiece
+- Text:
+    TargetLanguage: English
+    Value: Cuirass
+- Text:
+    TargetLanguage: English
+    Value: Gloves
+- Text:
+    TargetLanguage: English
+    Value: Boots
+- Text:
+    TargetLanguage: English
+    Value: Main Weapon
+- Text:
+    TargetLanguage: English
+    Value: Off Weapon
+- Text:
+    TargetLanguage: English
+    Value: Shield
+- Text:
+    TargetLanguage: English
+    Value: Cancel

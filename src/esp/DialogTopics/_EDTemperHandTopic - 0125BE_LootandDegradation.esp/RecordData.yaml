@@ -1,0 +1,9 @@
+FormKey: 0125BE:LootandDegradation.esp
+EditorID: _EDTemperHandTopic
+Name:
+  TargetLanguage: English
+  Value: Here are my gloves. (<Global=_EDHasEquippedHand> gold)
+Branch: 0125B3:LootandDegradation.esp
+Quest: 012050:LootandDegradation.esp
+SubtypeName: CUST
+Unknown: 4072

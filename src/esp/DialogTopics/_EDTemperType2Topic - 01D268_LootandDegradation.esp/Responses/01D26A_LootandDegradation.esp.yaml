@@ -1,0 +1,86 @@
+FormKey: 01D26A:LootandDegradation.esp
+Flags: {}
+PreviousDialog: Null
+FavorLevel: None
+LinkTo:
+- 0125B4:LootandDegradation.esp
+ResponseData: 0DBA21:Skyrim.esm
+Conditions:
+- MutagenObjectType: ConditionFloat
+  Unknown2: 12042
+  Data:
+    MutagenObjectType: GetGlobalValueConditionData
+    Global: 021DD6:LootandDegradation.esp
+  ComparisonValue: 1
+- MutagenObjectType: ConditionFloat
+  Unknown2: 12042
+  Data:
+    MutagenObjectType: GetGlobalValueConditionData
+    Global: 01D26B:LootandDegradation.esp
+  ComparisonValue: 1
+- MutagenObjectType: ConditionFloat
+  CompareOperator: GreaterThanOrEqualTo
+  Flags:
+  - OR
+  Unknown2: 12042
+  Data:
+    MutagenObjectType: GetGlobalValueConditionData
+    Global: 0135FC:LootandDegradation.esp
+  ComparisonValue: 1000
+- MutagenObjectType: ConditionFloat
+  Unknown2: 12042
+  Data:
+    MutagenObjectType: GetGlobalValueConditionData
+    Global: 021DD5:LootandDegradation.esp
+  ComparisonValue: 1
+- MutagenObjectType: ConditionFloat
+  Unknown2: 12042
+  Data:
+    MutagenObjectType: GetGlobalValueConditionData
+    Global: 013094:LootandDegradation.esp
+- MutagenObjectType: ConditionFloat
+  CompareOperator: GreaterThan
+  Flags:
+  - OR
+  Unknown2: 12042
+  Data:
+    MutagenObjectType: GetGlobalValueConditionData
+    Global: 0125C5:LootandDegradation.esp
+- MutagenObjectType: ConditionFloat
+  CompareOperator: GreaterThan
+  Flags:
+  - OR
+  Unknown2: 12042
+  Data:
+    MutagenObjectType: GetGlobalValueConditionData
+    Global: 0125C7:LootandDegradation.esp
+- MutagenObjectType: ConditionFloat
+  CompareOperator: GreaterThan
+  Flags:
+  - OR
+  Unknown2: 12042
+  Data:
+    MutagenObjectType: GetGlobalValueConditionData
+    Global: 0125C6:LootandDegradation.esp
+- MutagenObjectType: ConditionFloat
+  CompareOperator: GreaterThan
+  Flags:
+  - OR
+  Unknown2: 12042
+  Data:
+    MutagenObjectType: GetGlobalValueConditionData
+    Global: 0125C4:LootandDegradation.esp
+- MutagenObjectType: ConditionFloat
+  CompareOperator: GreaterThan
+  Flags:
+  - OR
+  Unknown2: 12042
+  Data:
+    MutagenObjectType: GetGlobalValueConditionData
+    Global: 0125C2:LootandDegradation.esp
+- MutagenObjectType: ConditionFloat
+  CompareOperator: GreaterThan
+  Unknown2: 12042
+  Data:
+    MutagenObjectType: GetGlobalValueConditionData
+    Global: 0125C3:LootandDegradation.esp

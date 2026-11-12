@@ -1,0 +1,9 @@
+FormKey: 0135FD:LootandDegradation.esp
+EditorID: _EDTemperLevel1Topic
+Name:
+  TargetLanguage: English
+  Value: I see you are only an apprentice at tempering equipment.
+Branch: 0125B3:LootandDegradation.esp
+Quest: 012050:LootandDegradation.esp
+SubtypeName: CUST
+Unknown: 4072

@@ -1,0 +1,51 @@
+FormKey: 0125B5:LootandDegradation.esp
+Flags: {}
+PreviousDialog: Null
+FavorLevel: None
+LinkTo:
+- 0125BC:LootandDegradation.esp
+- 0125C0:LootandDegradation.esp
+- 0125BE:LootandDegradation.esp
+- 0125BA:LootandDegradation.esp
+- 0125B6:LootandDegradation.esp
+- 0125B8:LootandDegradation.esp
+- 012B2E:LootandDegradation.esp
+- 012B2D:LootandDegradation.esp
+- 01D267:LootandDegradation.esp
+- 01D268:LootandDegradation.esp
+- 0135FD:LootandDegradation.esp
+- 013B61:LootandDegradation.esp
+- 013B63:LootandDegradation.esp
+- 013B65:LootandDegradation.esp
+- 013B66:LootandDegradation.esp
+- 013B67:LootandDegradation.esp
+- 021DD7:LootandDegradation.esp
+ResponseData: 0DBA22:Skyrim.esm
+Conditions:
+- MutagenObjectType: ConditionFloat
+  Flags:
+  - OR
+  Unknown2: 11681
+  Data:
+    MutagenObjectType: GetIsClassConditionData
+    Class: 013259:Skyrim.esm
+  ComparisonValue: 1
+- MutagenObjectType: ConditionFloat
+  Flags:
+  - OR
+  Unknown2: 11681
+  Data:
+    MutagenObjectType: GetInFactionConditionData
+    Faction: 05091D:Skyrim.esm
+  ComparisonValue: 1
+- MutagenObjectType: ConditionFloat
+  Unknown2: 11681
+  Data:
+    MutagenObjectType: IsInListConditionData
+    FormList: 018C45:LootandDegradation.esp
+  ComparisonValue: 1
+- MutagenObjectType: ConditionFloat
+  Unknown2: 11681
+  Data:
+    MutagenObjectType: GetOffersServicesNowConditionData
+  ComparisonValue: 1

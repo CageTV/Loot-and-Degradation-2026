@@ -1,0 +1,19 @@
+FormKey: 021872:LootandDegradation.esp
+EditorID: _EDRecipeHammer
+Items:
+- Item:
+    Item: 06F993:Skyrim.esm
+    Count: 1
+- Item:
+    Item: 071CF3:Skyrim.esm
+    Count: 1
+Conditions:
+- MutagenObjectType: ConditionFloat
+  Unknown2: 84
+  Data:
+    MutagenObjectType: GetGlobalValueConditionData
+    Global: 02130A:LootandDegradation.esp
+  ComparisonValue: 1
+CreatedObject: 05CAE1:Skyrim.esm
+WorkbenchKeyword: 07866A:Skyrim.esm
+CreatedObjectCount: 1

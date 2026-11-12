@@ -1,0 +1,14 @@
+FormKey: 0125C8:LootandDegradation.esp
+EditorID: _EDTemperSD
+Type: Standard
+Category: 0172A1:Skyrim.esm
+SoundFiles:
+- Data\Sound\FX\NPC\Human\RepairHammer\NPC_Human_Repair_Hammer_01.wav
+- Data\Sound\FX\NPC\Human\RepairHammer\NPC_Human_Repair_Hammer_02.wav
+- Data\Sound\FX\NPC\Human\RepairHammer\NPC_Human_Repair_Hammer_03.wav
+- Data\Sound\FX\NPC\Human\RepairHammer\NPC_Human_Repair_Hammer_04.wav
+OutputModel: 07F80C:Skyrim.esm
+LoopAndRumble:
+  Unknown: 1
+Priority: 128
+Variance: 4

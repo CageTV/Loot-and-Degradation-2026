@@ -1,0 +1,15 @@
+FormKey: 000D62:LootandDegradation.esp
+EditorID: _EDQuest
+Flags:
+- StartGameEnabled
+- 0x10
+- RunOnce
+Priority: 99
+QuestFormVersion: 46
+NextAliasID: 3
+Aliases:
+- ID: 1
+  Name: Player
+  Flags: []
+  ForcedReference: 000014:Skyrim.esm
+  VoiceTypes: Null

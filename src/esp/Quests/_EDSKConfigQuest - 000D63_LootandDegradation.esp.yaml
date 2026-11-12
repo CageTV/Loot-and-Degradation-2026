@@ -1,0 +1,14 @@
+FormKey: 000D63:LootandDegradation.esp
+EditorID: _EDSKConfigQuest
+Flags:
+- StartGameEnabled
+- 0x10
+- RunOnce
+QuestFormVersion: 46
+NextAliasID: 986
+Aliases:
+- ID: 985
+  Name: PlayerAlias
+  Flags: []
+  ForcedReference: 000014:Skyrim.esm
+  VoiceTypes: Null

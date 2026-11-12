@@ -1,0 +1,10 @@
+FormKey: 02130E:LootandDegradation.esp
+EditorID: _EDWhetstoneOpenSD
+Type: Standard
+Category: 0172A1:Skyrim.esm
+SoundFiles:
+- Data\Sound\FX\DRS\DRS_Slot_Open.wav
+OutputModel: 0E322C:Skyrim.esm
+LoopAndRumble: {}
+Priority: 128
+StaticAttenuation: 14.98

@@ -1,0 +1,10 @@
+FormKey: 017C1B:LootandDegradation.esp
+EditorID: _EDWeaponBreakSD
+Type: Standard
+Category: 0172A1:Skyrim.esm
+SoundFiles:
+- data\sound\fx\lootanddegradation\weaponbreak.wav
+OutputModel: 07F80C:Skyrim.esm
+LoopAndRumble:
+  Unknown: 1
+Priority: 128

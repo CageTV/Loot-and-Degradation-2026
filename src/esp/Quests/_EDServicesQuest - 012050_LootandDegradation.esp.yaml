@@ -1,0 +1,13 @@
+FormKey: 012050:LootandDegradation.esp
+EditorID: _EDServicesQuest
+Priority: 99
+QuestFormVersion: 46
+TextDisplayGlobals:
+- 0125C5:LootandDegradation.esp
+- 0125C7:LootandDegradation.esp
+- 0125C6:LootandDegradation.esp
+- 0125C4:LootandDegradation.esp
+- 0125C2:LootandDegradation.esp
+- 0125C3:LootandDegradation.esp
+- 01D26B:LootandDegradation.esp
+NextAliasID: 82

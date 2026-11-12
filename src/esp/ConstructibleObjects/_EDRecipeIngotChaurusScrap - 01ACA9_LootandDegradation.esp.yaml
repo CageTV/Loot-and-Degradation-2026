@@ -1,0 +1,16 @@
+FormKey: 01ACA9:LootandDegradation.esp
+EditorID: _EDRecipeIngotChaurusScrap
+Items:
+- Item:
+    Item: 01ACA8:LootandDegradation.esp
+    Count: 3
+Conditions:
+- MutagenObjectType: ConditionFloat
+  CompareOperator: GreaterThan
+  Unknown2: 84
+  Data:
+    MutagenObjectType: GetItemCountConditionData
+    ItemOrList: 01ACA8:LootandDegradation.esp
+CreatedObject: 03AD57:Skyrim.esm
+WorkbenchKeyword: 0A5CCE:Skyrim.esm
+CreatedObjectCount: 1

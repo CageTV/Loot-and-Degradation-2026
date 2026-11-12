@@ -1,0 +1,13 @@
+FormKey: 01F81A:LootandDegradation.esp
+EditorID: _EDNPCEmptySpell
+EquipmentType: 013F44:Skyrim.esm
+Description:
+  TargetLanguage: English
+  Value: ''
+Flags:
+- ManualCostCalc
+- NoAbsorbOrReflect
+Type: Ability
+Effects:
+- BaseEffect: 01F81C:LootandDegradation.esp
+  Data: {}

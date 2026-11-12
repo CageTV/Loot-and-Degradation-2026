@@ -12,8 +12,10 @@ changed, no commercial use, no paywalled/Patreon-only download. Donation points 
 ## The original, as a set of rules
 
 **Temper value.** A worn or carried item's temper is its `ExtraHealth` float: 1.0 untempered, 1.1 Fine, 1.2 Superior, 1.3 Exquisite, 1.4 Flawless,
-1.5 Epic, 1.6 Legendary (cap 1.7). The original hides state in the 4th-5th decimals ("buffer health": +0.00099 / +0.00074 for whetstone, "RandomDeg") because
-Papyrus cannot tell a freshly set value from a degraded one. Native: use the continuous float directly, no hack.
+1.5 Epic, 1.6 Legendary (cap 1.7). The original uses the 4th-5th decimals as a hidden durability band inside each level ("buffer health": an item that
+sits exactly on a level gets +0.00099, +0.00074 after a whetstone): every degrade step subtracts a tiny amount, and the value only drops to the next level (snapping to
+that level + 0.00099) when it crosses the boundary. Native: the same float and the same arithmetic, read and written directly on the worn item's ExtraHealth
+(no Papyrus WornObject calls); implemented in `plugin/src/Degrade.cpp`.
 
 **Degradation (player, followers when enabled).**
 - Per hit taken (not blocked): head (slot 0x1 or 0x2), body 0x4, hands 0x8, feet 0x80 each degrade by `base * material durability`; bases 0.000039, 0.000041,

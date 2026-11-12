@@ -1,0 +1,9 @@
+FormKey: 0125B6:LootandDegradation.esp
+EditorID: _EDTemperRWeaponTopic
+Name:
+  TargetLanguage: English
+  Value: Here is my main-hand weapon. (<Global=_EDHasEquippedRWeapon> gold)
+Branch: 0125B3:LootandDegradation.esp
+Quest: 012050:LootandDegradation.esp
+SubtypeName: CUST
+Unknown: 4072

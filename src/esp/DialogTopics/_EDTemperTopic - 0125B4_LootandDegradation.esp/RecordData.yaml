@@ -1,0 +1,9 @@
+FormKey: 0125B4:LootandDegradation.esp
+EditorID: _EDTemperTopic
+Name:
+  TargetLanguage: English
+  Value: Could you temper my equipped weapons and armor?
+Branch: 0125B3:LootandDegradation.esp
+Quest: 012050:LootandDegradation.esp
+SubtypeName: CUST
+Unknown: 4072

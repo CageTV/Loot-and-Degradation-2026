@@ -1,0 +1,13 @@
+FormKey: 011586:LootandDegradation.esp
+EditorID: _EDEnchArmorFortifyUnarmed05
+Name:
+  TargetLanguage: English
+  Value: Fortify Unarmed
+EnchantmentCost: 632
+EnchantmentAmount: 632
+EnchantType: Enchantment
+BaseEnchantment: 10FB88:Skyrim.esm
+Effects:
+- BaseEffect: 0424E2:Skyrim.esm
+  Data:
+    Magnitude: 30

@@ -1,0 +1,9 @@
+FormKey: 012B2D:LootandDegradation.esp
+EditorID: _EDTemperNoMoneyTopic
+Name:
+  TargetLanguage: English
+  Value: Never mind. I can't afford to temper my current equipment.
+Branch: 0125B3:LootandDegradation.esp
+Quest: 012050:LootandDegradation.esp
+SubtypeName: CUST
+Unknown: 4072

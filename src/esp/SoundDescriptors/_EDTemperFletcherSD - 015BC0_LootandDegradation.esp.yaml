@@ -1,0 +1,14 @@
+FormKey: 015BC0:LootandDegradation.esp
+EditorID: _EDTemperFletcherSD
+Type: Standard
+Category: 0172A1:Skyrim.esm
+SoundFiles:
+- Data\Sound\FX\NPC\Human\Leather Scrape\NPC_Human_Scrape_Leather_03.wav
+- Data\Sound\FX\NPC\Human\Leather Scrape\NPC_Human_Scrape_Leather_04.wav
+- Data\Sound\FX\NPC\Human\Leather Scrape\NPC_Human_Scrape_Leather_05.wav
+- Data\Sound\FX\NPC\Human\Leather Scrape\NPC_Human_Scrape_Leather_01.wav
+- Data\Sound\FX\NPC\Human\Leather Scrape\NPC_Human_Scrape_Leather_02.wav
+OutputModel: 099391:Skyrim.esm
+LoopAndRumble: {}
+PercentFrequencyVariance: 6
+Priority: 128

@@ -1,0 +1,21 @@
+FormKey: 013B6A:LootandDegradation.esp
+Flags: {}
+PreviousDialog: Null
+FavorLevel: None
+LinkTo:
+- 0125B4:LootandDegradation.esp
+ResponseData: 0DBA28:Skyrim.esm
+Conditions:
+- MutagenObjectType: ConditionFloat
+  Unknown2: 12042
+  Data:
+    MutagenObjectType: GetGlobalValueConditionData
+    Global: 021DD6:LootandDegradation.esp
+  ComparisonValue: 1
+- MutagenObjectType: ConditionFloat
+  CompareOperator: GreaterThanOrEqualTo
+  Unknown2: 12042
+  Data:
+    MutagenObjectType: GetGlobalValueConditionData
+    Global: 0135FC:LootandDegradation.esp
+  ComparisonValue: 31000

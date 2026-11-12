@@ -1,0 +1,9 @@
+FormKey: 0125C0:LootandDegradation.esp
+EditorID: _EDTemperFeetTopic
+Name:
+  TargetLanguage: English
+  Value: Here are my boots. (<Global=_EDHasEquippedFeet> gold)
+Branch: 0125B3:LootandDegradation.esp
+Quest: 012050:LootandDegradation.esp
+SubtypeName: CUST
+Unknown: 4072

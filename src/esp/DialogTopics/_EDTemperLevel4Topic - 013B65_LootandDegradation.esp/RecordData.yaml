@@ -1,0 +1,9 @@
+FormKey: 013B65:LootandDegradation.esp
+EditorID: _EDTemperLevel4Topic
+Name:
+  TargetLanguage: English
+  Value: An expert at tempering already? You are progressing so quickly.
+Branch: 0125B3:LootandDegradation.esp
+Quest: 012050:LootandDegradation.esp
+SubtypeName: CUST
+Unknown: 4072
