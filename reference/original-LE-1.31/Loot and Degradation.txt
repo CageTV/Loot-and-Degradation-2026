@@ -1,0 +1,57 @@
+Loot and Degradation by isoku
+
+Version:
+1.31
+[*]Added timed function to the widget hotkey.
+[*]NPCs will now sometimes loot dead allies but will only loot potions, weapons and ammo. In previous versions this feature only applied to NPCs killed by the player but now applies to NPCs killed by anything.
+[*]Optimized and fixed a few issues related to the NPCs Loot feature.
+[*]Fixed a few minor MCM issues.
+[*]Fixed an issue where tempered equipment looted from NPCs were predominantly found at 100% health.
+
+Dependencies:
+Required: Skyrim 1.9.29.0.8+
+Required: SKSE 1.7.0+
+
+Compatibility:
+[*]Works with all mods that add new weapons/armor/NPCs without the need for patches.
+[*]If degradation is enabled, all tempered items will now be considered unique from each other even if they look identical in your inventory. Hotkeys to equip items may function differently now. To counteract this, this mod offers options to configure hotkeys to automatically equip a weapon of a certain type from your inventory.
+[*]This mod will automatically configure itself to Requiem 1.8+'s tempering system. An additional patch for Requiem is available here: http://www.nexusmods.com/skyrim/mods/54562/
+
+Overview:
+NPCs now have access to tempered/enchanted items that were previously only available to you. Tempered items no longer retain their tempered state forever. All features can be adjusted using SkyUI's MCM.
+
+Loot:
+[*]NPCs can now be found equipped with tempered/enchanted weapons and armor from any mod as long as they have been added to the leveled lists.
+[*]Temper and enchantment chance/quality increases with NPC level. For a level 1 NPC, enchanted items will be very rare and untempered items will be most common followed by "Fine", "Superior", "Exquisite", "Flawless", "Epic" then "Legendary".
+[*]NPCs will now also automatically obtain the loot of their dead targets if they are killed within melee range. NPCs will sometimes loot dead allies but will only loot items that may help them immediately.
+
+Degradation:
+[*]Tempered weapons and armor will now eventually degrade back to their original, untempered states upon use/hit. Continuously blocking with a weapon, using power attacks or bashing with a bow will significantly increase the rate at which the weapon degrades.
+[*]If a hit is blocked with a shield, your armor will be protected from degradation for that hit and instead, your shield may degrade. Getting hit by power attacks can significantly degrade armor.
+[*]The rate of degradation scales with material type. From least durable to most durable: Cloth, Wood, Fur, Leather, Iron, Steel, Elven, Bonemold, Falmer, Dwarven, Glass, Chitin, Orcish, Dragon, Ebony, Stalhrim, Daedric.
+[*]Widgets: icons that represent your equipment's health before degrading can be configured to display anywhere on your screen. Requires SkyUI.
+[*]Equipped gear has a chance to permanently break into pieces on use/hit. These pieces can be forged into materials at the smelter. The faster an item degrades, the more likely the item will break. The higher the temper quality, the less likely the item will break. Artifacts (unique items that already come enchanted) cannot break. Being under the effects of a Mage Armor spell will render armor/clothing immune to breaking. Disabled by default.
+[*]These features can also be enabled for followers.
+
+Services:
+[*]To help with the degradation aspect, blacksmiths and fletchers will now temper your (non-artifact) items for a price. Blacksmiths are more expensive but can temper everything. Fletchers are cheaper but are limited to light armor, bows and one-handed weapons. Eorlund Graymane is the only blacksmith who can temper artifacts or other unique equipment. Orc blacksmiths are proficient in Orcish items, Baldor Iron-Shaper from Dragonborn is proficient in Stalhrim items. Being proficient with certain items means they are able to temper those items 1 level higher than their current skill level.
+[*]All will be randomly sorted into Apprentices or Journeymen and will only able to temper items into (Fine) and (Superior) respectively except Eorlund Gray-Mane who begins the game as an Adept. Their skill levels will progress through Journeyman (Superior), Adept (Exquisite), Expert (Flawless), Artisan (Epic) and then Master (Legendary) as they temper items. Although more expensive tempering will result in faster progression, experience is calculated before discounts via Speech, fletcher, etc. are applied so you aren't penalized for looking for cheaper options.
+[*]In addition, blacksmiths and fletchers will gain two skill levels (i.e. Adept to Artisan) over the course of about 6 in-game months without your aid. This experience over time feature will automatically adjust to your game if this mod is installed during a mid-playthrough.
+[*]You can also enable an option to have blacksmiths/fletchers take X hours to temper items instead of immediate repairs. After the X hours, a courier will deliver your improved items to you.
+[*]An Equipment Repair Kit is a portable item that will allow you to temper or degrade weapons and armor anywhere. Items improved using this kit will degrade faster than items improved at a grindstone, workbench or NPC. Once enabled, they can be crafted at a leather rack or purchased from blacksmiths.
+
+Install:
+Manual installers drop the files into your Data folder. NMM/BAIN: download the main file and add to your respective programs.
+
+Update:
+Remove all files from the previous version and install the new version.
+
+Uninstall:
+Remove all installed files.
+
+Translations:
+You have my permission to translate this mod and upload it to the Nexus or non-English sites. Just send me a link.
+
+Credits:
+richmondb for the whetstone.
+psychosteve for the widget icons.

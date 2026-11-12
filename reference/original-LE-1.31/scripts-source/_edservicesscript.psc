@@ -1,0 +1,13 @@
+Scriptname _EDServicesScript extends Quest  
+
+_EDQuestScript Property _EDQuest Auto
+
+Function UpdateGlobals()
+	UpdateCurrentInstanceGlobal(_EDQuest._EDHasEquippedRWeapon)
+	UpdateCurrentInstanceGlobal(_EDQuest._EDHasEquippedShield)
+	UpdateCurrentInstanceGlobal(_EDQuest._EDHasEquippedHead)
+	UpdateCurrentInstanceGlobal(_EDQuest._EDHasEquippedBody)
+	UpdateCurrentInstanceGlobal(_EDQuest._EDHasEquippedHand)
+	UpdateCurrentInstanceGlobal(_EDQuest._EDHasEquippedFeet)
+	UpdateCurrentInstanceGlobal(_EDQuest._EDTemperType)
+EndFunction
