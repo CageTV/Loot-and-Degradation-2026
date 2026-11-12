@@ -15,6 +15,11 @@ namespace Settings
 		int   breakType = 0;       // 0 only when untempered, 1 tempered items break only on power / blocked hits, 2 any time
 		int   breakableItems = 0;  // 0 all, 1 weapons only, 2 armor only
 		bool  requiemBreak = false;
+		// tempered and enchanted NPC gear (the original's TemperRarity / EnchantRarity / LevelIncrementMult / LessLeveledLoot)
+		int   npcTemperRarity = 12500000;  // 0 = NPCs get no temper; higher = more (and better) tempered gear
+		int   npcEnchantRarity = 50;       // 0 = NPCs get no enchantments
+		int   npcLevelStep = 8;            // levels per quality tier
+		bool  npcLessLeveled = false;      // flatter odds: tempered gear is rarer at every level
 		// the on-screen gear health widget (the original's iWant widget)
 		int   widgetStyle = 0;  // 0 off, 1 bars with level names, 2 level names fading with health, 3 both
 		int   widgetPos = 1;    // corner: 0 top left, 1 top right, 2 bottom left, 3 bottom right

@@ -6,6 +6,7 @@
 #include "PCH.h"
 #include "Degrade.h"
 #include "Kit.h"
+#include "NpcGear.h"
 #include "Menu.h"
 #include "Settings.h"
 
@@ -34,6 +35,7 @@ namespace
 		case SKSE::MessagingInterface::kDataLoaded:
 			Degrade::Register();
 			Kit::Register();
+			NpcGear::Register();
 			break;
 		case SKSE::MessagingInterface::kPostLoadGame:
 		case SKSE::MessagingInterface::kNewGame:
@@ -51,6 +53,7 @@ SKSEPluginLoad(const SKSE::LoadInterface* a_skse)
 	SetupLog();
 	SKSE::log::info("Loot and Degradation 2026 0.1.0, game {}", a_skse->RuntimeVersion().string());
 	Settings::Load();
+	NpcGear::RegisterSerialization();
 	SKSE::GetMessagingInterface()->RegisterListener(OnMessage);
 	return true;
 }

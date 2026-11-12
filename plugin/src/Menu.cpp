@@ -138,6 +138,33 @@ namespace Menu
 			Note("The Papyrus scripts are replaced by this plugin; the SkyUI MCM is replaced by these pages; updated for Skyrim SE/AE.");
 		}
 
+		void __stdcall RenderNpc()
+		{
+			auto& d = Settings::Get();
+			Text("NPC gear");
+			Note("NPCs can carry tempered and enchanted weapons and armor, rolled once when they first appear. Stronger gear is more likely the higher the NPC's level. "
+				 "Gear that is already tempered or enchanted is left alone, and your followers are never touched. Changes apply to NPCs that load from now on.");
+			Separator();
+
+			float temper = static_cast<float>(d.npcTemperRarity) / 125000.0f;
+			if (Changed(SliderFloat("Tempered gear", &temper, 0.0f, 300.0f, d.npcTemperRarity <= 0 ? "Off" : "%.0f%% of normal"))) {
+				d.npcTemperRarity = std::max(0, static_cast<int>(temper * 125000.0f + 0.5f));
+			}
+			Note("How much tempered gear NPCs carry. 100% is the original's default; 0 turns it off.");
+
+			float enchant = static_cast<float>(d.npcEnchantRarity) * 2.0f;
+			if (Changed(SliderFloat("Enchanted gear", &enchant, 0.0f, 300.0f, d.npcEnchantRarity <= 0 ? "Off" : "%.0f%% of normal"))) {
+				d.npcEnchantRarity = std::max(0, static_cast<int>(enchant / 2.0f + 0.5f));
+			}
+			Note("How much enchanted gear NPCs carry. 100% is the default; 0 turns it off.");
+
+			Changed(SliderInt("Levels per quality step", &d.npcLevelStep, 2, 20));
+			Note("The odds restart and the best possible quality goes up one level each time an NPC passes this many levels. Default 8.");
+
+			Changed(Checkbox("Less leveled loot", &d.npcLessLeveled));
+			Note("Flattens the odds so tempered gear stays rare at every level, and weak enchantments are not limited by level.");
+		}
+
 		void __stdcall RenderWidget()
 		{
 			auto& d = Settings::Get();
@@ -189,6 +216,7 @@ namespace Menu
 		SKSEMenuFramework::AddSectionItem("Degradation", RenderDegradation);
 		SKSEMenuFramework::AddSectionItem("Breaking", RenderBreaking);
 		SKSEMenuFramework::AddSectionItem("Durability", RenderDurability);
+		SKSEMenuFramework::AddSectionItem("NPC gear", RenderNpc);
 		SKSEMenuFramework::AddSectionItem("Widget", RenderWidget);
 		SKSEMenuFramework::AddSectionItem("About", RenderAbout);
 		SKSEMenuFramework::AddHudElement(Frame);

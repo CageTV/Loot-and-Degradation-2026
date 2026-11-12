@@ -63,6 +63,10 @@ namespace Settings
 		getI("BreakableItems", d.breakableItems);
 		getB("RequiemBreak", d.requiemBreak);
 		getI("DegradeText", d.degradeText);
+		getI("NpcTemperRarity", d.npcTemperRarity);
+		getI("NpcEnchantRarity", d.npcEnchantRarity);
+		getI("NpcLevelStep", d.npcLevelStep);
+		getB("NpcLessLeveled", d.npcLessLeveled);
 		getI("WidgetStyle", d.widgetStyle);
 		getI("WidgetPos", d.widgetPos);
 		getI("WidgetOrient", d.widgetOrient);
@@ -99,6 +103,8 @@ namespace Settings
 			d.degradeMult, d.followerDecayChance, d.followerDegradeMult, d.degradeText);
 		out << std::format("[Breaking]\nBreakChance={}\nFollowerBreakChance={}\nBreakType={}\nBreakableItems={}\nRequiemBreak={}\n\n", d.breakChance, d.followerBreakChance, d.breakType, d.breakableItems,
 			d.requiemBreak ? 1 : 0);
+		out << std::format("[NpcGear]\nNpcTemperRarity={}\nNpcEnchantRarity={}\nNpcLevelStep={}\nNpcLessLeveled={}\n\n", d.npcTemperRarity, d.npcEnchantRarity, d.npcLevelStep,
+			d.npcLessLeveled ? 1 : 0);
 		out << std::format("[Widget]\nWidgetStyle={}\nWidgetPos={}\nWidgetOrient={}\nWidgetX={}\nWidgetY={}\nWidgetAlpha={}\nWidgetScale={}\nWidgetItems={}\nWidgetContextual={}\nWidgetDelay={}\n\n",
 			d.widgetStyle, d.widgetPos, d.widgetOrient, d.widgetX, d.widgetY, d.widgetAlpha, d.widgetScale, d.widgetItems, d.widgetContextual ? 1 : 0, d.widgetDelay);
 		out << std::format("[Durability]\nCloth={}\nLeatherWood={}\nIron={}\nSteel={}\nElven={}\nFalmer={}\nDwarven={}\nGlass={}\nOrcish={}\nDragon={}\nDaedricEbony={}\n",
