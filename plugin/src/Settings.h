@@ -15,6 +15,16 @@ namespace Settings
 		int   breakType = 0;       // 0 only when untempered, 1 tempered items break only on power / blocked hits, 2 any time
 		int   breakableItems = 0;  // 0 all, 1 weapons only, 2 armor only
 		bool  requiemBreak = false;
+		// the on-screen gear health widget (the original's iWant widget)
+		int   widgetStyle = 0;  // 0 off, 1 bars with level names, 2 level names fading with health, 3 both
+		int   widgetPos = 1;    // corner: 0 top left, 1 top right, 2 bottom left, 3 bottom right
+		int   widgetOrient = 1; // 0 in a row, 1 in a column
+		float widgetX = 24.0f, widgetY = 90.0f;  // distance from that corner, in pixels
+		float widgetAlpha = 0.9f;
+		float widgetScale = 1.3f;
+		int   widgetItems = 0;  // 0 weapons and armor, 1 weapons and shield, 2 armor
+		bool  widgetContextual = false;  // only show with weapons drawn, or for widgetDelay seconds after gear changes
+		float widgetDelay = 8.0f;
 		int   degradeText = 0;  // 0 off, 1 when an item becomes untempered, 2 every level
 		// material durability multipliers
 		float cloth = 1.000001f, leatherWood = 1.300001f, iron = 1.200001f, steel = 1.100001f, elven = 1.050001f, falmer = 0.900001f;

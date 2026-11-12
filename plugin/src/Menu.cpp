@@ -1,6 +1,7 @@
 #include "PCH.h"
 #include "Menu.h"
 #include "Settings.h"
+#include "Widget.h"
 
 #include "SKSEMenuFramework.h"
 
@@ -137,9 +138,35 @@ namespace Menu
 			Note("The Papyrus scripts are replaced by this plugin; the SkyUI MCM is replaced by these pages; updated for Skyrim SE/AE.");
 		}
 
+		void __stdcall RenderWidget()
+		{
+			auto& d = Settings::Get();
+			Text("Gear widget");
+			Note("Shows the health of the gear you are wearing on screen: the temper level and how much of it is left before the gear drops to the next level.");
+			Separator();
+			static const char* const kStyle[] = { "Off", "Bars", "Names fading with health", "Bars and fading names" };
+			Changed(Combo("Style", &d.widgetStyle, kStyle, 4));
+			static const char* const kItems[] = { "Weapons and armor", "Weapons and shield only", "Armor only" };
+			Changed(Combo("Items", &d.widgetItems, kItems, 3));
+			static const char* const kPos[] = { "Top left", "Top right", "Bottom left", "Bottom right" };
+			Changed(Combo("Corner", &d.widgetPos, kPos, 4));
+			static const char* const kOrient[] = { "In a row", "In a column" };
+			Changed(Combo("Layout", &d.widgetOrient, kOrient, 2));
+			Changed(SliderFloat("Distance from the side", &d.widgetX, 0.0f, 600.0f, "%.0f px"));
+			Changed(SliderFloat("Distance from the top or bottom", &d.widgetY, 0.0f, 600.0f, "%.0f px"));
+			Changed(SliderFloat("Size", &d.widgetScale, 0.6f, 3.0f, "%.2fx"));
+			Changed(SliderFloat("Opacity", &d.widgetAlpha, 0.1f, 1.0f, "%.2f"));
+			Changed(Checkbox("Only show it when it matters", &d.widgetContextual));
+			Note("Shown while your weapons are drawn or you are in combat, and for a few seconds after your gear changes or wears down a level.");
+			if (d.widgetContextual) {
+				Changed(SliderFloat("Seconds to keep it visible", &d.widgetDelay, 1.0f, 60.0f, "%.0f s"));
+			}
+		}
+
 		// Drawn every frame: writes the ini a moment after the last change.
 		void __stdcall Frame()
 		{
+			Widget::Draw();
 			if (g_dirty && clock::now() - g_changedAt > 1s) {
 				g_dirty = false;
 				Settings::Save();
@@ -162,6 +189,7 @@ namespace Menu
 		SKSEMenuFramework::AddSectionItem("Degradation", RenderDegradation);
 		SKSEMenuFramework::AddSectionItem("Breaking", RenderBreaking);
 		SKSEMenuFramework::AddSectionItem("Durability", RenderDurability);
+		SKSEMenuFramework::AddSectionItem("Widget", RenderWidget);
 		SKSEMenuFramework::AddSectionItem("About", RenderAbout);
 		SKSEMenuFramework::AddHudElement(Frame);
 		g_registered = true;

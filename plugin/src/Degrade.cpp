@@ -3,6 +3,7 @@
 #include "Gear.h"
 #include "Materials.h"
 #include "Settings.h"
+#include "Widget.h"
 
 namespace Degrade
 {
@@ -471,6 +472,7 @@ namespace Degrade
 			if (!player || !player->Is3DLoaded()) {
 				return;
 			}
+			Widget::Refresh();
 			static bool s_atBench = false;
 			const bool  atBench = AtCraftingFurniture(player);
 			if (s_atBench && !atBench) {
