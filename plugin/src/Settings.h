@@ -27,6 +27,7 @@ namespace Settings
 		float widgetX = 24.0f, widgetY = 90.0f;  // distance from that corner, in pixels
 		float widgetAlpha = 0.9f;
 		float widgetScale = 1.3f;
+		int   widgetIcons = 1;  // 0 text only, 1 new icons, 2 the original icons
 		int   widgetItems = 0;  // 0 weapons and armor, 1 weapons and shield, 2 armor
 		bool  widgetContextual = false;  // only show with weapons drawn, or for widgetDelay seconds after gear changes
 		float widgetDelay = 8.0f;

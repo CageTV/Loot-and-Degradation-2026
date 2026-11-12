@@ -196,6 +196,8 @@ namespace Menu
 			static const char* const kStyle[] = { "Off", "Percentage based", "Alpha based", "Alpha and percentage based" };
 			Changed(Combo("Style", &d.widgetStyle, kStyle, 4));
 			Note("Percentage based always shows the level with how much of it is left. Alpha based shows nothing for fresh gear and brightens as it wears down. Both combines them.");
+			static const char* const kIcons[] = { "Text only", "New icons", "Original icons" };
+			Changed(Combo("Icons", &d.widgetIcons, kIcons, 3));
 			static const char* const kItems[] = { "Weapons and armor", "Weapons and shield only", "Armor only" };
 			Changed(Combo("Items", &d.widgetItems, kItems, 3));
 			static const char* const kPos[] = { "Top left", "Top right", "Bottom left", "Bottom right" };

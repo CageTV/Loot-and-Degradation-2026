@@ -17,6 +17,7 @@ namespace Widget
 			const char* label = "";
 			bool        present = false;
 			bool        weapon = false;  // weapons and shields count as "weapons" for the Items setting
+			int         icon = -1;       // index into kIconNames
 			float       health = 1.0f;
 		};
 
@@ -25,6 +26,51 @@ namespace Widget
 		bool                g_weaponsDrawn = false;
 		bool                g_inCombat = false;
 		clock::time_point   g_touchedAt{};
+
+		// head, body, hands, feet, sword, dagger, axe, mace, bow, crossbow, staff, shield (the file names of the icons)
+		constexpr std::array<const char*, 12> kIconNames{ "head", "body", "hands", "feet", "sword", "dagger", "axe", "mace", "bow", "crossbow", "staff", "shield" };
+
+		int WeaponIcon(RE::TESBoundObject* a_object)
+		{
+			auto* weapon = a_object ? a_object->As<RE::TESObjectWEAP>() : nullptr;
+			if (!weapon) {
+				return 4;
+			}
+			switch (weapon->GetWeaponType()) {
+			case RE::WEAPON_TYPE::kOneHandDagger:
+				return 5;
+			case RE::WEAPON_TYPE::kOneHandAxe:
+			case RE::WEAPON_TYPE::kTwoHandAxe:
+				return 6;
+			case RE::WEAPON_TYPE::kOneHandMace:
+				return 7;
+			case RE::WEAPON_TYPE::kBow:
+				return 8;
+			case RE::WEAPON_TYPE::kCrossbow:
+				return 9;
+			case RE::WEAPON_TYPE::kStaff:
+				return 10;
+			default:
+				return 4;
+			}
+		}
+
+		// set 0 = the new icons, 1 = the original ones; loaded the first time they are drawn
+		ImTextureID IconTexture(int a_set, int a_index)
+		{
+			static std::array<std::array<ImTextureID, 12>, 2> cache{};
+			static std::array<std::array<bool, 12>, 2>        tried{};
+			auto& tex = cache[a_set][a_index];
+			if (!tried[a_set][a_index]) {
+				tried[a_set][a_index] = true;
+				const auto path = std::format("Data/Interface/LootandDegradation/icons/{}_{}.png", a_set == 0 ? "new" : "legacy", kIconNames[a_index]);
+				tex = SKSEMenuFramework::LoadTexture(path);
+				if (!tex) {
+					SKSE::log::warn("Widget: icon {} could not be loaded", path);
+				}
+			}
+			return tex;
+		}
 
 		const char* LevelName(float a_health)
 		{
@@ -75,8 +121,9 @@ namespace Widget
 			return;
 		}
 		std::array<Slot, 7> next{};
-		auto set = [&](std::size_t i, const char* label, bool weapon, const Gear::Worn& w) {
+		auto set = [&](std::size_t i, const char* label, bool weapon, const Gear::Worn& w, int icon) {
 			next[i].label = label;
+			next[i].icon = icon;
 			next[i].weapon = weapon;
 			next[i].present = static_cast<bool>(w);
 			next[i].health = Gear::Health(w);
@@ -85,18 +132,21 @@ namespace Widget
 		if (!head) {
 			head = Gear::FindArmor(player, Gear::kCirclet);
 		}
-		set(0, "Head", false, head);
-		set(1, "Body", false, Gear::FindArmor(player, Gear::kBody));
-		set(2, "Hands", false, Gear::FindArmor(player, Gear::kHands));
-		set(3, "Feet", false, Gear::FindArmor(player, Gear::kFeet));
-		set(4, "Weapon", true, Gear::FindWeapon(player, false));
+		set(0, "Head", false, head, 0);
+		set(1, "Body", false, Gear::FindArmor(player, Gear::kBody), 1);
+		set(2, "Hands", false, Gear::FindArmor(player, Gear::kHands), 2);
+		set(3, "Feet", false, Gear::FindArmor(player, Gear::kFeet), 3);
+		{
+			auto main = Gear::FindWeapon(player, false);
+			set(4, "Weapon", true, main, WeaponIcon(main.object));
+		}
 		auto offhand = Gear::FindWeapon(player, true);
 		if (offhand && offhand.object && offhand.object->As<RE::TESObjectWEAP>() && (offhand.object->As<RE::TESObjectWEAP>()->IsBow() ||
 		                                                                             offhand.object->As<RE::TESObjectWEAP>()->IsCrossbow())) {
 			offhand = {};  // a bow is already shown as the main weapon
 		}
-		set(5, "Off-hand", true, offhand);
-		set(6, "Shield", true, Gear::FindArmor(player, Gear::kShield));
+		set(5, "Off-hand", true, offhand, WeaponIcon(offhand.object));
+		set(6, "Shield", true, Gear::FindArmor(player, Gear::kShield), 11);
 		const bool drawn = player->AsActorState()->IsWeaponDrawn();
 		const bool combat = player->IsInCombat();
 
@@ -146,11 +196,14 @@ namespace Widget
 		const bool  fading = s.widgetStyle >= 2;   // the original's "alpha-based": gear is invisible when fresh and brightens as it wears
 		const bool  percent = s.widgetStyle != 2;  // the original's "percentage-based": the share of the level that is left
 
+		const int iconSet = s.widgetIcons == 1 ? 0 : (s.widgetIcons == 2 ? 1 : -1);  // -1 = text only
+
 		struct Cell
 		{
 			std::string text;
 			std::string percent;
 			float       alpha;
+			ImTextureID icon;
 		};
 		std::vector<Cell> cells;
 		for (const auto& slot : slots) {
@@ -167,8 +220,15 @@ namespace Widget
 			const bool  tempered = *level != 0;
 			const float left = tempered ? Remaining(slot.health) : 0.0f;  // untempered gear has nothing left to lose
 			const int   pct = static_cast<int>(left * 100.0f + 0.5f);
-			Cell        c;
-			c.text = tempered ? std::format("{}: {}", slot.label, level) : std::string(slot.label);
+			Cell        c{};
+			if (iconSet >= 0 && slot.icon >= 0) {
+				c.icon = IconTexture(iconSet, slot.icon);
+			}
+			if (c.icon) {
+				c.text = level;  // the icon says which piece it is
+			} else {
+				c.text = tempered ? std::format("{}: {}", slot.label, level) : std::string(slot.label);
+			}
 			if (percent && tempered && pct < 100) {
 				c.percent = std::format("{}%", std::max(pct, 1));
 			}
@@ -182,8 +242,9 @@ namespace Widget
 			return;
 		}
 
-		const float cellW = size * 11.0f;
-		const float cellH = size + pad * 2.0f;
+		const float iconSize = size * 1.9f;
+		const float cellW = size * 9.0f + iconSize;
+		const float cellH = std::max(size, iconSize) + pad * 2.0f;
 		const bool  column = s.widgetOrient != 0;
 		const float totalW = column ? cellW : cellW * static_cast<float>(cells.size());
 		const float totalH = column ? cellH * static_cast<float>(cells.size()) : cellH;
@@ -195,12 +256,21 @@ namespace Widget
 			const float x = column ? x0 : x0 + cellW * i;
 			const float y = column ? y0 + cellH * i : y0;
 			i += 1.0f;
+			const float mid = y + (cellH - pad) * 0.5f;
+			const float textY = mid - size * 0.5f;
+			const ImU32 white = Color(0.95f, 0.93f, 0.85f, c.alpha);
 			ImDrawListManager::AddRectFilled(dl, ImVec2(x, y), ImVec2(x + cellW - pad, y + cellH - pad), Color(0.0f, 0.0f, 0.0f, 0.35f * c.alpha), size * 0.2f, 0);
-			ImDrawListManager::AddText(dl, font, size, ImVec2(x + pad, y + pad * 0.6f), Color(0.95f, 0.93f, 0.85f, c.alpha), c.text.c_str());
+			float left = x + pad;
+			if (c.icon) {
+				ImDrawListManager::AddImage(dl, c.icon, ImVec2(left, mid - iconSize * 0.5f), ImVec2(left + iconSize, mid + iconSize * 0.5f), ImVec2(0, 0), ImVec2(1, 1),
+					Color(1.0f, 1.0f, 1.0f, c.alpha));
+				left += iconSize + pad;
+			}
+			ImDrawListManager::AddText(dl, font, size, ImVec2(left, textY), white, c.text.c_str());
 			if (!c.percent.empty()) {
 				const ImVec2 extent = CalcTextSize(c.percent.c_str());
 				const float  textW = extent.x * s.widgetScale;
-				ImDrawListManager::AddText(dl, font, size, ImVec2(x + cellW - pad * 2.0f - textW, y + pad * 0.6f), Color(0.95f, 0.93f, 0.85f, c.alpha), c.percent.c_str());
+				ImDrawListManager::AddText(dl, font, size, ImVec2(x + cellW - pad * 2.0f - textW, textY), white, c.percent.c_str());
 			}
 		}
 	}
