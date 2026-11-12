@@ -138,27 +138,7 @@ namespace Degrade
 
 		void PlayBreakSound(RE::Actor* a_actor, bool a_weapon)
 		{
-			auto* dh = RE::TESDataHandler::GetSingleton();
-			auto* am = RE::BSAudioManager::GetSingleton();
-			if (!dh || !am) {
-				return;
-			}
-			auto* sound = Materials::FromFile("LootandDegradation.esp"sv, a_weapon ? 0x017C1B : 0x0186E1);
-			auto* form = sound ? sound->As<RE::BGSSoundDescriptorForm>() : nullptr;
-			if (!form || !form->soundDescriptor) {
-				SKSE::log::warn("Break: the {} break sound record was not found", a_weapon ? "weapon" : "armor");
-				return;
-			}
-			RE::BSSoundHandle handle;
-			if (!am->GetSoundHandle(handle, form->soundDescriptor)) {
-				SKSE::log::warn("Break: could not build the {} break sound", a_weapon ? "weapon" : "armor");
-				return;
-			}
-			handle.SetPosition(a_actor->GetPosition());
-			if (auto* node = a_actor->Get3D()) {
-				handle.SetObjectToFollow(node);
-			}
-			handle.Play();
+			PlaySound(a_actor, a_weapon ? 0x017C1B : 0x0186E1);
 		}
 
 		void BreakItem(RE::Actor* a_actor, Gear::Worn& a_worn, bool a_weapon)
@@ -536,6 +516,49 @@ namespace Degrade
 				}
 			}).detach();
 		}
+	}
+
+	void PlaySound(RE::Actor* a_actor, RE::FormID a_localId)
+	{
+		auto* am = RE::BSAudioManager::GetSingleton();
+		if (!a_actor || !am) {
+			return;
+		}
+		auto* sound = Materials::FromFile("LootandDegradation.esp"sv, a_localId);
+		auto* form = sound ? sound->As<RE::BGSSoundDescriptorForm>() : nullptr;
+		if (!form || !form->soundDescriptor) {
+			SKSE::log::warn("Sound {:06X} of the plugin was not found", a_localId);
+			return;
+		}
+		RE::BSSoundHandle handle;
+		if (!am->GetSoundHandle(handle, form->soundDescriptor)) {
+			SKSE::log::warn("Could not build sound {:06X}", a_localId);
+			return;
+		}
+		handle.SetPosition(a_actor->GetPosition());
+		if (auto* node = a_actor->Get3D()) {
+			handle.SetObjectToFollow(node);
+		}
+		handle.Play();
+	}
+
+	// The repair kit's "damage equipment": drops one temper level (to the top of the level below, like the original's DegradeItem).
+	// Returns false when the actor has nothing equipped there.
+	bool DegradeTier(RE::Actor* a_actor, bool a_weapon, bool a_left, std::uint32_t a_mask)
+	{
+		std::scoped_lock l(g_lock);
+		auto             w = a_weapon ? Gear::FindWeapon(a_actor, a_left) : Gear::FindArmor(a_actor, a_mask);
+		if (!w) {
+			return false;
+		}
+		const float current = Gear::Health(w);
+		if (current >= 1.1f) {
+			Gear::SetHealth(w, std::floor((current - 0.1f) * 10.0f) / 10.0f + 0.00099f);
+			PlaySound(a_actor, a_weapon ? 0x017C1B : 0x0186E1);
+		} else {
+			Notify("This item cannot be degraded further.");
+		}
+		return true;
 	}
 
 	void Register()

@@ -5,6 +5,7 @@
  */
 #include "PCH.h"
 #include "Degrade.h"
+#include "Kit.h"
 #include "Menu.h"
 #include "Settings.h"
 
@@ -32,6 +33,7 @@ namespace
 			break;
 		case SKSE::MessagingInterface::kDataLoaded:
 			Degrade::Register();
+			Kit::Register();
 			break;
 		case SKSE::MessagingInterface::kPostLoadGame:
 		case SKSE::MessagingInterface::kNewGame:
