@@ -6,6 +6,8 @@ degrades with use, blacksmiths and fletchers temper it for a price.
 Status: planning. See `docs/SPEC.md`.
 
 ## License and credits
+The full license text is in LICENSE.txt.
+
 This is a remix of Loot and Degradation, released by its author under **CC BY-NC-SA** (https://creativecommons.org/licenses/by-nc-sa/4.0/). This work
 is released under the same license: you may copy, redistribute and remix it, you must give credit and link the license, you must say what was changed, you
 may not use it commercially or paywall it. Changes are not endorsed by Step Modifications or the original author.
