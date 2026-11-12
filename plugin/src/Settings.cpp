@@ -68,10 +68,13 @@ namespace Settings
 		getI("NpcLevelStep", d.npcLevelStep);
 		getB("NpcLessLeveled", d.npcLessLeveled);
 		getI("WidgetStyle", d.widgetStyle);
-		getI("WidgetPos", d.widgetPos);
+		getF("WidgetGap", d.widgetGap);
+		getF("WidgetRowSpacing", d.widgetRowSpacing);
+		getF("WidgetBackground", d.widgetBg);
+		getF("WidgetPadding", d.widgetPad);
 		getI("WidgetOrient", d.widgetOrient);
-		getF("WidgetX", d.widgetX);
-		getF("WidgetY", d.widgetY);
+		getF("WidgetPosX", d.widgetX);
+		getF("WidgetPosY", d.widgetY);
 		getF("WidgetAlpha", d.widgetAlpha);
 		getF("WidgetScale", d.widgetScale);
 		getI("WidgetItems", d.widgetItems);
@@ -110,8 +113,8 @@ namespace Settings
 			d.requiemBreak ? 1 : 0);
 		out << std::format("[NpcGear]\nNpcTemperRarity={}\nNpcEnchantRarity={}\nNpcLevelStep={}\nNpcLessLeveled={}\n\n", d.npcTemperRarity, d.npcEnchantRarity, d.npcLevelStep,
 			d.npcLessLeveled ? 1 : 0);
-		out << std::format("[Widget]\nWidgetStyle={}\nWidgetPos={}\nWidgetOrient={}\nWidgetX={}\nWidgetY={}\nWidgetAlpha={}\nWidgetScale={}\nWidgetItems={}\nWidgetIcons={}\nWidgetIconColor={}\nWidgetIconR={}\nWidgetIconG={}\nWidgetIconB={}\nWidgetContextual={}\nWidgetDelay={}\n\n",
-			d.widgetStyle, d.widgetPos, d.widgetOrient, d.widgetX, d.widgetY, d.widgetAlpha, d.widgetScale, d.widgetItems, d.widgetIcons, d.widgetIconColor,
+		out << std::format("[Widget]\nWidgetStyle={}\nWidgetGap={}\nWidgetRowSpacing={}\nWidgetBackground={}\nWidgetPadding={}\nWidgetOrient={}\nWidgetPosX={}\nWidgetPosY={}\nWidgetAlpha={}\nWidgetScale={}\nWidgetItems={}\nWidgetIcons={}\nWidgetIconColor={}\nWidgetIconR={}\nWidgetIconG={}\nWidgetIconB={}\nWidgetContextual={}\nWidgetDelay={}\n\n",
+			d.widgetStyle, d.widgetGap, d.widgetRowSpacing, d.widgetBg, d.widgetPad, d.widgetOrient, d.widgetX, d.widgetY, d.widgetAlpha, d.widgetScale, d.widgetItems, d.widgetIcons, d.widgetIconColor,
 			d.widgetIconR, d.widgetIconG, d.widgetIconB, d.widgetContextual ? 1 : 0, d.widgetDelay);
 		out << std::format("[Durability]\nCloth={}\nLeatherWood={}\nIron={}\nSteel={}\nElven={}\nFalmer={}\nDwarven={}\nGlass={}\nOrcish={}\nDragon={}\nDaedricEbony={}\n",
 			d.cloth, d.leatherWood, d.iron, d.steel, d.elven, d.falmer, d.dwarven, d.glass, d.orcish, d.dragon, d.daedricEbony);

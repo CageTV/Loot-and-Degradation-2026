@@ -206,14 +206,30 @@ namespace Menu
 				Changed(SliderFloat("Green", &d.widgetIconG, 0.0f, 1.0f, "%.2f"));
 				Changed(SliderFloat("Blue", &d.widgetIconB, 0.0f, 1.0f, "%.2f"));
 			}
+			static const char* const kPreset[] = { "Choose a preset...", "Compact", "Default", "Roomy", "Minimal (no background)", "Large and bold" };
+			static int                 preset = 0;
+			if (Combo("Layout preset", &preset, kPreset, 6) && preset > 0) {
+				struct P { float gap, rows, pad, bg, scale; };
+				static constexpr P kP[] = { {}, { 6, 2, 0.2f, 0.35f, 1.1f }, { 14, 4, 0.35f, 0.35f, 1.3f }, { 32, 8, 0.55f, 0.35f, 1.3f }, { 10, 0, 0.1f, 0.0f, 1.2f }, { 18, 6, 0.45f, 0.5f, 1.8f } };
+				d.widgetGap = kP[preset].gap;
+				d.widgetRowSpacing = kP[preset].rows;
+				d.widgetPad = kP[preset].pad;
+				d.widgetBg = kP[preset].bg;
+				d.widgetScale = kP[preset].scale;
+				Settings::Save();
+			}
+			Note("A preset sets the spacing, padding, background and size; everything below can still be adjusted by hand.");
 			static const char* const kItems[] = { "Weapons and armor", "Weapons and shield only", "Armor only" };
 			Changed(Combo("Items", &d.widgetItems, kItems, 3));
-			static const char* const kPos[] = { "Top left", "Top right", "Bottom left", "Bottom right" };
-			Changed(Combo("Corner", &d.widgetPos, kPos, 4));
 			static const char* const kOrient[] = { "In a row", "In a column" };
 			Changed(Combo("Layout", &d.widgetOrient, kOrient, 2));
-			Changed(SliderFloat("Distance from the side", &d.widgetX, 0.0f, 600.0f, "%.0f px"));
-			Changed(SliderFloat("Distance from the top or bottom", &d.widgetY, 0.0f, 600.0f, "%.0f px"));
+			Changed(SliderFloat("Horizontal position", &d.widgetX, 0.0f, 100.0f, "%.0f%%"));
+			Changed(SliderFloat("Vertical position", &d.widgetY, 0.0f, 100.0f, "%.0f%%"));
+			Note("0% is the left or top edge of the screen and 100% the right or bottom edge; the widget always stays fully on screen.");
+			Changed(SliderFloat("Space between level and percent", &d.widgetGap, 0.0f, 120.0f, "%.0f px"));
+			Changed(SliderFloat("Space between rows", &d.widgetRowSpacing, 0.0f, 40.0f, "%.0f px"));
+			Changed(SliderFloat("Padding", &d.widgetPad, 0.0f, 1.0f, "%.2f"));
+			Changed(SliderFloat("Background", &d.widgetBg, 0.0f, 1.0f, d.widgetBg <= 0.0f ? "None" : "%.2f"));
 			Changed(SliderFloat("Size", &d.widgetScale, 0.6f, 3.0f, "%.2fx"));
 			Changed(SliderFloat("Opacity", &d.widgetAlpha, 0.1f, 1.0f, "%.2f"));
 			Changed(Checkbox("Only show it when it matters", &d.widgetContextual));

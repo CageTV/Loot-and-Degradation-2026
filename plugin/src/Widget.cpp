@@ -192,7 +192,7 @@ namespace Widget
 		}
 		const float size = GetFontSize() * s.widgetScale;
 		const float alpha = std::clamp(s.widgetAlpha, 0.1f, 1.0f);
-		const float pad = size * 0.35f;
+		const float pad = size * std::clamp(s.widgetPad, 0.0f, 1.5f);
 		const bool  fading = s.widgetStyle >= 2;   // the original's "alpha-based": gear is invisible when fresh and brightens as it wears
 		const bool  percent = s.widgetStyle != 2;  // the original's "percentage-based": the share of the level that is left
 
@@ -255,34 +255,49 @@ namespace Widget
 		}
 
 		const float iconSize = size * 1.9f;
-		const float cellW = size * 9.0f + iconSize;
-		const float cellH = std::max(size, iconSize) + pad * 2.0f;
+		float       levelW = 0.0f, pctW = 0.0f;
+		for (const auto& c : cells) {
+			levelW = std::max(levelW, CalcTextSize(c.text.c_str()).x * s.widgetScale);
+			if (!c.percent.empty()) {
+				pctW = std::max(pctW, CalcTextSize(c.percent.c_str()).x * s.widgetScale);
+			}
+		}
+		const bool  hasIcon = std::any_of(cells.begin(), cells.end(), [](const Cell& c) { return c.icon != nullptr; });
+		const float gap = pctW > 0.0f ? s.widgetGap : 0.0f;
+		const float cellW = pad + (hasIcon ? iconSize + pad : 0.0f) + levelW + gap + pctW + pad;
+		const float cellH = std::max(size, hasIcon ? iconSize : size) + pad * 2.0f;
+		const float spacing = s.widgetRowSpacing;
 		const bool  column = s.widgetOrient != 0;
-		const float totalW = column ? cellW : cellW * static_cast<float>(cells.size());
-		const float totalH = column ? cellH * static_cast<float>(cells.size()) : cellH;
-		const float x0 = (s.widgetPos == 0 || s.widgetPos == 2) ? s.widgetX : io->DisplaySize.x - s.widgetX - totalW;
-		const float y0 = (s.widgetPos == 0 || s.widgetPos == 1) ? s.widgetY : io->DisplaySize.y - s.widgetY - totalH;
+		const float n = static_cast<float>(cells.size());
+		const float totalW = column ? cellW : cellW * n + spacing * (n - 1.0f);
+		const float totalH = column ? cellH * n + spacing * (n - 1.0f) : cellH;
+		// the position is a share of the free room, so 0 and 100 are always flush against the screen edges
+		const float x0 = std::clamp(s.widgetX, 0.0f, 100.0f) / 100.0f * std::max(0.0f, io->DisplaySize.x - totalW);
+		const float y0 = std::clamp(s.widgetY, 0.0f, 100.0f) / 100.0f * std::max(0.0f, io->DisplaySize.y - totalH);
 
 		float i = 0.0f;
 		for (const auto& c : cells) {
-			const float x = column ? x0 : x0 + cellW * i;
-			const float y = column ? y0 + cellH * i : y0;
+			const float x = column ? x0 : x0 + (cellW + spacing) * i;
+			const float y = column ? y0 + (cellH + spacing) * i : y0;
 			i += 1.0f;
-			const float mid = y + (cellH - pad) * 0.5f;
+			const float mid = y + cellH * 0.5f;
 			const float textY = mid - size * 0.5f;
 			const ImU32 white = Color(0.95f, 0.93f, 0.85f, c.alpha);
-			ImDrawListManager::AddRectFilled(dl, ImVec2(x, y), ImVec2(x + cellW - pad, y + cellH - pad), Color(0.0f, 0.0f, 0.0f, 0.35f * c.alpha), size * 0.2f, 0);
+			if (s.widgetBg > 0.0f) {
+				ImDrawListManager::AddRectFilled(dl, ImVec2(x, y), ImVec2(x + cellW, y + cellH), Color(0.0f, 0.0f, 0.0f, s.widgetBg * c.alpha), size * 0.2f, 0);
+			}
 			float left = x + pad;
 			if (c.icon) {
 				ImDrawListManager::AddImage(dl, c.icon, ImVec2(left, mid - iconSize * 0.5f), ImVec2(left + iconSize, mid + iconSize * 0.5f), ImVec2(0, 0), ImVec2(1, 1),
 					Color(c.tint[0], c.tint[1], c.tint[2], c.alpha));
+			}
+			if (hasIcon) {
 				left += iconSize + pad;
 			}
 			ImDrawListManager::AddText(dl, font, size, ImVec2(left, textY), white, c.text.c_str());
 			if (!c.percent.empty()) {
-				const ImVec2 extent = CalcTextSize(c.percent.c_str());
-				const float  textW = extent.x * s.widgetScale;
-				ImDrawListManager::AddText(dl, font, size, ImVec2(x + cellW - pad * 2.0f - textW, textY), white, c.percent.c_str());
+				const float w = CalcTextSize(c.percent.c_str()).x * s.widgetScale;
+				ImDrawListManager::AddText(dl, font, size, ImVec2(x + cellW - pad - w, textY), white, c.percent.c_str());
 			}
 		}
 	}

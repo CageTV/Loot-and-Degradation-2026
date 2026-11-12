@@ -22,9 +22,12 @@ namespace Settings
 		bool  npcLessLeveled = false;      // flatter odds: tempered gear is rarer at every level
 		// the on-screen gear health widget (the original's iWant widget)
 		int   widgetStyle = 0;  // 0 off, 1 bars with level names, 2 level names fading with health, 3 both
-		int   widgetPos = 1;    // corner: 0 top left, 1 top right, 2 bottom left, 3 bottom right
+		float widgetGap = 14.0f;      // pixels between the level name and the percentage
+	float widgetRowSpacing = 4.0f;  // pixels between rows
+	float widgetBg = 0.35f;       // background opacity, 0 = none
+	float widgetPad = 0.35f;      // padding inside each row, in text heights
 		int   widgetOrient = 1; // 0 in a row, 1 in a column
-		float widgetX = 24.0f, widgetY = 90.0f;  // distance from that corner, in pixels
+		float widgetX = 90.0f, widgetY = 12.0f;  // where on the screen, 0..100 % (the widget always stays fully on screen)
 		float widgetAlpha = 0.9f;
 		float widgetScale = 1.3f;
 		int   widgetIcons = 1;  // 0 text only, 1 new icons, 2 the original icons
