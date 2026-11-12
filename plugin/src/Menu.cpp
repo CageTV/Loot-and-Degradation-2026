@@ -26,6 +26,22 @@ namespace Menu
 			return a_changed;
 		}
 
+		constexpr const char* kLogoPath = "Data/Interface/LootandDegradation/loot_and_degradation_logo.png";
+		constexpr float       kLogoAspect = 319.0f / 850.0f;
+
+		void Logo()
+		{
+			static ImTextureID tex = SKSEMenuFramework::LoadTexture(kLogoPath);
+			if (!tex) {
+				return;
+			}
+			const float avail = GetContentRegionAvail().x;
+			const float w = std::min(avail, 380.0f);
+			SetCursorPosX(GetCursorPosX() + (avail - w) * 0.5f);
+			Image(tex, ImVec2(w, w * kLogoAspect));
+			Spacing();
+		}
+
 		void Note(const char* a_text)
 		{
 			TextWrapped("%s", a_text);
@@ -34,6 +50,7 @@ namespace Menu
 
 		void __stdcall RenderDegradation()
 		{
+			Logo();
 			auto& d = Settings::Get();
 			Text("Degradation");
 			Note("Tempered weapons and armor slowly lose their temper when you swing, shoot, block or get hit, and fall back one level at a time "
@@ -65,6 +82,7 @@ namespace Menu
 
 		void __stdcall RenderBreaking()
 		{
+			Logo();
 			auto& d = Settings::Get();
 			Text("Breaking");
 			Note("Worn gear can break into pieces when it wears, leaving scrap you can smelt. The faster something degrades and the lower its temper, "
@@ -89,6 +107,7 @@ namespace Menu
 
 		void __stdcall RenderDurability()
 		{
+			Logo();
 			auto& d = Settings::Get();
 			Text("Durability by material");
 			Note("How fast each material wears. Lower wears faster and breaks sooner; higher lasts longer. Cloth and leather are the least durable, daedric and ebony the most (the numbers are the original's).");
@@ -125,6 +144,7 @@ namespace Menu
 
 		void __stdcall RenderAbout()
 		{
+			Logo();
 			Text("Loot and Degradation 2026");
 			Note("A modernised, native SKSE version of Loot and Degradation by isoku (2014). Settings are read as the game runs; changes are saved to "
 				 "Data/SKSE/Plugins/LootandDegradation.ini a second after you stop moving a slider.");
@@ -140,6 +160,7 @@ namespace Menu
 
 		void __stdcall RenderNpc()
 		{
+			Logo();
 			auto& d = Settings::Get();
 			Text("NPC gear");
 			Note("NPCs can carry tempered and enchanted weapons and armor, rolled once when they first appear. Stronger gear is more likely the higher the NPC's level. "
@@ -167,6 +188,7 @@ namespace Menu
 
 		void __stdcall RenderWidget()
 		{
+			Logo();
 			auto& d = Settings::Get();
 			Text("Gear widget");
 			Note("Shows the health of the gear you are wearing on screen: the temper level and how much of it is left before the gear drops to the next level.");
