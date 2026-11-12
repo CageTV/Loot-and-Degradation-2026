@@ -193,8 +193,9 @@ namespace Menu
 			Text("Gear widget");
 			Note("Shows the health of the gear you are wearing on screen: the temper level and how much of it is left before the gear drops to the next level.");
 			Separator();
-			static const char* const kStyle[] = { "Off", "Bars", "Names fading with health", "Bars and fading names" };
+			static const char* const kStyle[] = { "Off", "Percentage based", "Alpha based", "Alpha and percentage based" };
 			Changed(Combo("Style", &d.widgetStyle, kStyle, 4));
+			Note("Percentage based always shows the level with how much of it is left. Alpha based shows nothing for fresh gear and brightens as it wears down. Both combines them.");
 			static const char* const kItems[] = { "Weapons and armor", "Weapons and shield only", "Armor only" };
 			Changed(Combo("Items", &d.widgetItems, kItems, 3));
 			static const char* const kPos[] = { "Top left", "Top right", "Bottom left", "Bottom right" };

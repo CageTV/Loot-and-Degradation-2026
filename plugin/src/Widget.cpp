@@ -60,17 +60,6 @@ namespace Widget
 		{
 			return ColorConvertFloat4ToU32(ImVec4(a_r, a_g, a_b, a_a));
 		}
-
-		ImU32 BarColor(float a_fraction, float a_alpha)
-		{
-			if (a_fraction > 0.5f) {
-				return Color(0.45f, 0.85f, 0.45f, a_alpha);
-			}
-			if (a_fraction > 0.2f) {
-				return Color(0.95f, 0.75f, 0.30f, a_alpha);
-			}
-			return Color(0.90f, 0.35f, 0.30f, a_alpha);
-		}
 	}
 
 	void Touch()
@@ -154,14 +143,14 @@ namespace Widget
 		const float size = GetFontSize() * s.widgetScale;
 		const float alpha = std::clamp(s.widgetAlpha, 0.1f, 1.0f);
 		const float pad = size * 0.35f;
-		const float barW = size * 4.0f;
-		const float barH = std::max(3.0f, size * 0.28f);
+		const bool  fading = s.widgetStyle >= 2;   // the original's "alpha-based": gear is invisible when fresh and brightens as it wears
+		const bool  percent = s.widgetStyle != 2;  // the original's "percentage-based": the share of the level that is left
 
 		struct Cell
 		{
-			const Slot* slot;
 			std::string text;
-			float       fraction;
+			std::string percent;
+			float       alpha;
 		};
 		std::vector<Cell> cells;
 		for (const auto& slot : slots) {
@@ -175,11 +164,17 @@ namespace Widget
 				continue;
 			}
 			const char* level = LevelName(slot.health);
-			Cell        c{ &slot, "", Remaining(slot.health) };
-			c.text = std::format("{}{}{}", slot.label, *level ? ": " : "", level);
-			if (!*level) {
-				c.text = std::format("{}: worn", slot.label);
-				c.fraction = 0.0f;  // untempered items have no band to show
+			const bool  tempered = *level != 0;
+			const float left = tempered ? Remaining(slot.health) : 0.0f;  // untempered gear has nothing left to lose
+			const int   pct = static_cast<int>(left * 100.0f + 0.5f);
+			Cell        c;
+			c.text = tempered ? std::format("{}: {}", slot.label, level) : std::string(slot.label);
+			if (percent && tempered && pct < 100) {
+				c.percent = std::format("{}%", std::max(pct, 1));
+			}
+			c.alpha = alpha * (fading ? 1.0f - left : 1.0f);
+			if (c.alpha < 0.02f) {
+				continue;  // fully fresh gear is not shown in the fading styles
 			}
 			cells.push_back(std::move(c));
 		}
@@ -187,8 +182,8 @@ namespace Widget
 			return;
 		}
 
-		const float cellW = barW + pad * 2.0f + size * 5.5f;
-		const float cellH = size + barH + pad * 2.0f;
+		const float cellW = size * 11.0f;
+		const float cellH = size + pad * 2.0f;
 		const bool  column = s.widgetOrient != 0;
 		const float totalW = column ? cellW : cellW * static_cast<float>(cells.size());
 		const float totalH = column ? cellH * static_cast<float>(cells.size()) : cellH;
@@ -200,16 +195,12 @@ namespace Widget
 			const float x = column ? x0 : x0 + cellW * i;
 			const float y = column ? y0 + cellH * i : y0;
 			i += 1.0f;
-			const bool  tempered = c.slot->health >= 1.1f;
-			const float textAlpha = (s.widgetStyle >= 2 && tempered) ? alpha * (0.35f + 0.65f * c.fraction) : alpha;
-			ImDrawListManager::AddRectFilled(dl, ImVec2(x, y), ImVec2(x + cellW - pad, y + cellH - pad), Color(0.0f, 0.0f, 0.0f, 0.35f * alpha), size * 0.2f, 0);
-			ImDrawListManager::AddText(dl, font, size, ImVec2(x + pad, y + pad * 0.6f), Color(0.95f, 0.93f, 0.85f, textAlpha), c.text.c_str());
-			if (s.widgetStyle != 2 && tempered) {
-				const float by = y + pad * 0.6f + size + pad * 0.5f;
-				const float bw = cellW - pad * 3.0f;
-				ImDrawListManager::AddRectFilled(dl, ImVec2(x + pad, by), ImVec2(x + pad + bw, by + barH), Color(1.0f, 1.0f, 1.0f, 0.15f * alpha), barH * 0.5f, 0);
-				ImDrawListManager::AddRectFilled(dl, ImVec2(x + pad, by), ImVec2(x + pad + bw * std::max(c.fraction, 0.02f), by + barH), BarColor(c.fraction, alpha),
-					barH * 0.5f, 0);
+			ImDrawListManager::AddRectFilled(dl, ImVec2(x, y), ImVec2(x + cellW - pad, y + cellH - pad), Color(0.0f, 0.0f, 0.0f, 0.35f * c.alpha), size * 0.2f, 0);
+			ImDrawListManager::AddText(dl, font, size, ImVec2(x + pad, y + pad * 0.6f), Color(0.95f, 0.93f, 0.85f, c.alpha), c.text.c_str());
+			if (!c.percent.empty()) {
+				const ImVec2 extent = CalcTextSize(c.percent.c_str());
+				const float  textW = extent.x * s.widgetScale;
+				ImDrawListManager::AddText(dl, font, size, ImVec2(x + cellW - pad * 2.0f - textW, y + pad * 0.6f), Color(0.95f, 0.93f, 0.85f, c.alpha), c.percent.c_str());
 			}
 		}
 	}
