@@ -54,7 +54,12 @@ namespace Menu
 
 			Separator();
 			Text("Followers");
-			Note("Followers are not covered yet. They are planned for a later update.");
+			float followerPercent = static_cast<float>(d.followerDecayChance) / 100.0f;
+			if (Changed(SliderFloat("Chance a follower's gear wears", &followerPercent, 0.0f, 100.0f, d.followerDecayChance <= 0 ? "Off" : "%.1f%%"))) {
+				d.followerDecayChance = std::clamp(static_cast<int>(followerPercent * 100.0f + 0.5f), 0, 10000);
+			}
+			Note("The same wear rules for your followers' weapons, armor and shields. 0 leaves their gear alone (the default).");
+			Changed(SliderFloat("Follower degradation speed", &d.followerDegradeMult, 0.1f, 5.0f, "%.2fx"));
 		}
 
 		void __stdcall RenderBreaking()
@@ -66,6 +71,7 @@ namespace Menu
 			Separator();
 
 			Changed(SliderFloat("Break chance", &d.breakChance, 0.0f, 50.0f, d.breakChance <= 0.0f ? "Off" : "%.1f"));
+			Changed(SliderFloat("Follower break chance", &d.followerBreakChance, 0.0f, 50.0f, d.followerBreakChance <= 0.0f ? "Off" : "%.1f"));
 			Note("0 turns breaking off. Higher is more likely; 1.0 is a rare event, 20 breaks untempered gear within a few hits.");
 
 			static const char* const kType[] = { "Only untempered gear", "Tempered gear only on power attacks and blocked hits", "Any time" };
@@ -74,7 +80,7 @@ namespace Menu
 			static const char* const kItems[] = { "Weapons, shields and armor", "Weapons and shields only", "Armor only" };
 			Changed(Combo("What can break", &d.breakableItems, kItems, 3));
 
-			if (d.breakChance > 0.0f) {
+			if (d.breakChance > 0.0f || d.followerBreakChance > 0.0f) {
 				Spacing();
 				TextColored(ImVec4(1.0f, 0.75f, 0.35f, 1.0f), "Breaking is on: gear that breaks is gone for good.");
 			}

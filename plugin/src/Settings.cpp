@@ -58,6 +58,7 @@ namespace Settings
 		getI("FollowerDecayChance", d.followerDecayChance);
 		getF("FollowerDegradeMult", d.followerDegradeMult);
 		getF("BreakChance", d.breakChance);
+		getF("FollowerBreakChance", d.followerBreakChance);
 		getI("BreakType", d.breakType);
 		getI("BreakableItems", d.breakableItems);
 		getB("RequiemBreak", d.requiemBreak);
@@ -86,7 +87,7 @@ namespace Settings
 		out << "; These are also on the Loot and Degradation pages of the SKSE Menu Framework; changes there are written here.\n";
 		out << std::format("[Degradation]\nDecayChance={}\nDegradeMult={}\nFollowerDecayChance={}\nFollowerDegradeMult={}\nDegradeText={}\n\n", d.decayChance,
 			d.degradeMult, d.followerDecayChance, d.followerDegradeMult, d.degradeText);
-		out << std::format("[Breaking]\nBreakChance={}\nBreakType={}\nBreakableItems={}\nRequiemBreak={}\n\n", d.breakChance, d.breakType, d.breakableItems,
+		out << std::format("[Breaking]\nBreakChance={}\nFollowerBreakChance={}\nBreakType={}\nBreakableItems={}\nRequiemBreak={}\n\n", d.breakChance, d.followerBreakChance, d.breakType, d.breakableItems,
 			d.requiemBreak ? 1 : 0);
 		out << std::format("[Durability]\nCloth={}\nLeatherWood={}\nIron={}\nSteel={}\nElven={}\nFalmer={}\nDwarven={}\nGlass={}\nOrcish={}\nDragon={}\nDaedricEbony={}\n",
 			d.cloth, d.leatherWood, d.iron, d.steel, d.elven, d.falmer, d.dwarven, d.glass, d.orcish, d.dragon, d.daedricEbony);

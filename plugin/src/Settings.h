@@ -11,6 +11,7 @@ namespace Settings
 		float followerDegradeMult = 1.0f;
 		// breaking
 		float breakChance = 0.0f;  // PlayerBreakChance, 0 = off
+		float followerBreakChance = 0.0f;
 		int   breakType = 0;       // 0 only when untempered, 1 tempered items break only on power / blocked hits, 2 any time
 		int   breakableItems = 0;  // 0 all, 1 weapons only, 2 armor only
 		bool  requiemBreak = false;

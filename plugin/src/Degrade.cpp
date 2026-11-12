@@ -12,12 +12,42 @@ namespace Degrade
 
 		std::mt19937 g_rng{ std::random_device{}() };
 		std::mutex   g_lock;
-		bool         g_hitDelay = false;
-		bool         g_weapDelay = false;
-		bool         g_aggressive = false;  // the last swing was a power attack (or a bow bash): used by the break rules
-		bool         g_crit = false;        // the last blocked hit landed on the weapon
 		bool         g_requiem = false;
-		clock::time_point g_resetAt{};
+		bool         g_whetstone = false;  // the player last improved gear with the repair kit (not at a grindstone or workbench): items seed with a thinner buffer
+
+		// the original's hit / swing timers and break flags, one set for each actor that is being tracked
+		struct State
+		{
+			bool              hitDelay = false;
+			bool              weapDelay = false;
+			bool              aggressive = false;  // the last swing was a power attack (or a bow bash): used by the break rules
+			bool              crit = false;        // the last blocked hit landed on the weapon
+			clock::time_point resetAt{};
+		};
+		std::unordered_map<RE::FormID, State> g_states;
+		std::unordered_set<RE::FormID>        g_seeded;  // followers whose gear has been seeded since they were first seen
+
+		State& StateOf(RE::Actor* a_actor)
+		{
+			return g_states[a_actor->GetFormID()];
+		}
+
+		bool IsPlayer(RE::Actor* a_actor)
+		{
+			return a_actor && a_actor->IsPlayerRef();
+		}
+
+		// The player, and (when follower degradation is on) the player's followers.
+		bool Tracked(RE::Actor* a_actor)
+		{
+			if (!a_actor) {
+				return false;
+			}
+			if (a_actor->IsPlayerRef()) {
+				return Settings::Get().decayChance > 0;
+			}
+			return Settings::Get().followerDecayChance > 0 && !a_actor->IsDead() && a_actor->IsPlayerTeammate();
+		}
 
 		int RandInt(int a_lo, int a_hi)
 		{
@@ -30,11 +60,11 @@ namespace Degrade
 		}
 
 		// the original's hit / swing timers: one shared window that frees both counters when it ends
-		void ResetIfDue()
+		void ResetIfDue(State& a_state)
 		{
-			if ((g_hitDelay || g_weapDelay) && clock::now() >= g_resetAt) {
-				g_hitDelay = false;
-				g_weapDelay = false;
+			if ((a_state.hitDelay || a_state.weapDelay) && clock::now() >= a_state.resetAt) {
+				a_state.hitDelay = false;
+				a_state.weapDelay = false;
 			}
 		}
 
@@ -149,15 +179,21 @@ namespace Degrade
 			} else {
 				SKSE::log::info("Break: {} leaves no scrap", name);
 			}
-			Notify((name + " has broken into pieces.").c_str());
+			if (IsPlayer(a_actor)) {
+					Notify((name + " has broken into pieces.").c_str());
+				}
 		}
 
 		// The original's TemperDecay: one roll against the decay chance, then either the item breaks or its temper drops by a_mag.
-		void TemperDecay(RE::Actor* a_actor, const Target& a_t, float a_mag, bool a_power)
+		void TemperDecay(RE::Actor* a_actor, State& a_state, const Target& a_t, float a_mag, bool a_power)
 		{
 			const auto& s = Settings::Get();
+			const bool  player = IsPlayer(a_actor);
+			const int   decayChance = player ? s.decayChance : s.followerDecayChance;
+			const float degradeMult = player ? s.degradeMult : s.followerDegradeMult;
+			const float breakChance = player ? s.breakChance : s.followerBreakChance;
 			const int   chance = RandInt(1, 10000);
-			if (chance >= s.decayChance) {
+			if (chance >= decayChance) {
 				return;
 			}
 			auto w = Find(a_actor, a_t);
@@ -173,15 +209,15 @@ namespace Degrade
 				a_mag *= 2.0f;
 			}
 			bool breaks = false;
-			if (s.breakChance > 0.0f) {
-				const double common = s.breakChance * std::pow(a_mag * 10.0, 0.75) * 1550.0;
+			if (breakChance > 0.0f) {
+				const double common = breakChance * std::pow(a_mag * 10.0, 0.75) * 1550.0;
 				const int    ceiling = g_requiem ? RoundI(60.0 * std::pow(base, -3.0) * common) :
 				                                   RoundI((96.149 * base * base - 345.42 * base + 309.27) * common);
 				if (s.breakType == 0) {
 					breaks = current < 1.1f && chance < ceiling;
 				} else if (s.breakType == 1) {
 					if (current >= 1.1f) {
-						breaks = (a_power || g_aggressive || g_crit) && chance < ceiling;
+						breaks = (a_power || a_state.aggressive || a_state.crit) && chance < ceiling;
 					} else {
 						breaks = chance < ceiling;
 					}
@@ -205,18 +241,18 @@ namespace Degrade
 			if (current < 1.00099f) {
 				return;
 			}
-			float next = current - a_mag * s.degradeMult;
+			float next = current - a_mag * degradeMult;
 			const float buffer = std::floor(next * 10.0f) / 10.0f + 0.00099f;
 			if (next > buffer) {
 				next = buffer;
 			}
-			if (s.degradeText > 0) {
+			if (player && s.degradeText > 0) {
 				const int baseCur = static_cast<int>(current * 10.0f);
 				const int baseNew = static_cast<int>(next * 10.0f);
 				bool      show = false;
 				if (s.degradeText == 1) {
 					if (baseNew == 10 && baseCur == 11) {
-						if (s.breakChance > 0.0f && s.breakType == 0) {
+						if (breakChance > 0.0f && s.breakType == 0) {
 							Notify((std::string(NameOf(w.object)) + " is now vulnerable to breaking.").c_str());
 						} else {
 							show = true;
@@ -240,17 +276,18 @@ namespace Degrade
 				return;
 			}
 			const float health = Gear::Health(w);
+			const float buffer = (g_whetstone && IsPlayer(a_actor)) ? 74.0f : 99.0f;
 			float       current = health * 100000.0f;
 			const float adjusted = static_cast<float>(static_cast<int>(current / 10000.0f)) * 10000.0f;
 			if ((current == adjusted || static_cast<int>(current) == static_cast<int>(adjusted)) && current >= 110000.0f) {
-				current += 99.0f;
+				current += buffer;
 				Gear::SetHealth(w, current / 100000.0f);
 			}
 		}
 
 		void SeedAll(RE::Actor* a_actor)
 		{
-			if (Settings::Get().decayChance <= 0) {
+			if (!Tracked(a_actor)) {
 				return;
 			}
 			SeedOne(a_actor, { true, false, 0 });
@@ -260,14 +297,16 @@ namespace Degrade
 			}
 		}
 
-		void SeedLater()
+		// Seed an actor's gear a moment after something changed (the equipped item shows up in the inventory a little later).
+		void SeedLater(RE::FormID a_id)
 		{
-			std::thread([] {
+			std::thread([a_id] {
 				std::this_thread::sleep_for(500ms);
-				SKSE::GetTaskInterface()->AddTask([] {
-					if (auto* player = RE::PlayerCharacter::GetSingleton()) {
+				SKSE::GetTaskInterface()->AddTask([a_id] {
+					auto* actor = RE::TESForm::LookupByID<RE::Actor>(a_id);
+					if (actor && actor->Is3DLoaded()) {
 						std::scoped_lock l(g_lock);
-						SeedAll(player);
+						SeedAll(actor);
 					}
 				});
 			}).detach();
@@ -284,37 +323,38 @@ namespace Degrade
 
 			RE::BSEventNotifyControl ProcessEvent(const RE::TESHitEvent* a_event, RE::BSTEventSource<RE::TESHitEvent>*) override
 			{
-				auto* player = RE::PlayerCharacter::GetSingleton();
-				if (!a_event || !player || a_event->target.get() != player || !a_event->cause) {
+				auto* actor = (a_event && a_event->target) ? a_event->target->As<RE::Actor>() : nullptr;
+				if (!actor || !a_event->cause || !Tracked(actor)) {
 					return RE::BSEventNotifyControl::kContinue;
 				}
 				auto* source = RE::TESForm::LookupByID(a_event->source);
-				if (!source || !source->As<RE::TESObjectWEAP>() || Settings::Get().decayChance <= 0) {
+				if (!source || !source->As<RE::TESObjectWEAP>()) {
 					return RE::BSEventNotifyControl::kContinue;
 				}
 				std::scoped_lock l(g_lock);
-				ResetIfDue();
-				if (g_hitDelay) {
+				auto&            state = StateOf(actor);
+				ResetIfDue(state);
+				if (state.hitDelay) {
 					return RE::BSEventNotifyControl::kContinue;
 				}
 				const bool power = a_event->flags.any(RE::TESHitEvent::Flag::kPowerAttack);
 				const bool blocked = a_event->flags.any(RE::TESHitEvent::Flag::kHitBlocked);
-				g_crit = false;
+				state.crit = false;
 				if (blocked) {
-					if (Gear::FindArmor(player, Gear::kShield)) {
-						TemperDecay(player, { false, false, Gear::kShield }, 0.000085f * Materials::Classify(Gear::FindArmor(player, Gear::kShield).object).durability, power);
+					if (auto shield = Gear::FindArmor(actor, Gear::kShield)) {
+						TemperDecay(actor, state, { false, false, Gear::kShield }, 0.000085f * Materials::Classify(shield.object).durability, power);
 					} else {
-						g_crit = true;
-						TemperDecay(player, { true, false, 0 }, 0.000091f * Materials::Classify(Gear::FindWeapon(player, false).object).durability, power);
+						state.crit = true;
+						TemperDecay(actor, state, { true, false, 0 }, 0.000091f * Materials::Classify(Gear::FindWeapon(actor, false).object).durability, power);
 					}
 				} else {
 					auto hit = [&](std::uint32_t mask, float amount) {
-						auto w = Gear::FindArmor(player, mask);
+						auto w = Gear::FindArmor(actor, mask);
 						if (w) {
-							TemperDecay(player, { false, false, mask }, amount * Materials::Classify(w.object).durability, power);
+							TemperDecay(actor, state, { false, false, mask }, amount * Materials::Classify(w.object).durability, power);
 						}
 					};
-					if (Gear::FindArmor(player, Gear::kHead)) {
+					if (Gear::FindArmor(actor, Gear::kHead)) {
 						hit(Gear::kHead, 0.000039f);
 					} else {
 						hit(Gear::kCirclet, 0.000039f);
@@ -323,8 +363,8 @@ namespace Degrade
 					hit(Gear::kHands, 0.000038f);
 					hit(Gear::kFeet, 0.000023f);
 				}
-				g_hitDelay = true;
-				g_resetAt = clock::now() + 3s;
+				state.hitDelay = true;
+				state.resetAt = clock::now() + 3s;
 				return RE::BSEventNotifyControl::kContinue;
 			}
 		};
@@ -340,13 +380,13 @@ namespace Degrade
 
 			RE::BSEventNotifyControl ProcessEvent(const RE::TESEquipEvent* a_event, RE::BSTEventSource<RE::TESEquipEvent>*) override
 			{
-				auto* player = RE::PlayerCharacter::GetSingleton();
-				if (!a_event || !player || a_event->actor.get() != player) {
+				auto* actor = (a_event && a_event->actor) ? a_event->actor->As<RE::Actor>() : nullptr;
+				if (!actor || !Tracked(actor)) {
 					return RE::BSEventNotifyControl::kContinue;
 				}
 				auto* obj = RE::TESForm::LookupByID(a_event->baseObject);
 				if (obj && (obj->As<RE::TESObjectWEAP>() || obj->As<RE::TESObjectARMO>())) {
-					SeedLater();
+					SeedLater(actor->GetFormID());
 				}
 				return RE::BSEventNotifyControl::kContinue;
 			}
@@ -363,8 +403,8 @@ namespace Degrade
 
 			RE::BSEventNotifyControl ProcessEvent(const RE::BSAnimationGraphEvent* a_event, RE::BSTEventSource<RE::BSAnimationGraphEvent>*) override
 			{
-				auto* player = RE::PlayerCharacter::GetSingleton();
-				if (!a_event || !player || a_event->holder != player || Settings::Get().decayChance <= 0) {
+				auto* actor = a_event && a_event->holder ? const_cast<RE::TESObjectREFR*>(a_event->holder)->As<RE::Actor>() : nullptr;
+				if (!actor || !Tracked(actor)) {
 					return RE::BSEventNotifyControl::kContinue;
 				}
 				const std::string_view tag = a_event->tag.c_str();
@@ -372,44 +412,135 @@ namespace Degrade
 					return RE::BSEventNotifyControl::kContinue;
 				}
 				std::scoped_lock l(g_lock);
-				ResetIfDue();
-				if (g_weapDelay) {
+				auto&            state = StateOf(actor);
+				ResetIfDue(state);
+				if (state.weapDelay) {
 					return RE::BSEventNotifyControl::kContinue;
 				}
-				const bool bow = Gear::BowEquipped(player);
+				const bool bow = Gear::BowEquipped(actor);
 				bool       rotating = false;
-				player->GetGraphVariableBool("bAllowRotation", rotating);
+				actor->GetGraphVariableBool("bAllowRotation", rotating);
 				float decay = 0.000034f;
-				g_aggressive = false;
+				state.aggressive = false;
 				if (rotating || (bow && tag == "bashStop")) {
 					decay = 0.000068f;
-					g_aggressive = true;
+					state.aggressive = true;
 				}
 				if (tag == "weaponLeftSwing") {
-					auto w = Gear::FindWeapon(player, true);
+					auto w = Gear::FindWeapon(actor, true);
 					if (w) {
-						TemperDecay(player, { true, true, 0 }, decay * Materials::Classify(w.object).durability, false);
+						TemperDecay(actor, state, { true, true, 0 }, decay * Materials::Classify(w.object).durability, false);
 					}
 				} else if (tag != "bashStop" || bow) {
-					auto w = Gear::FindWeapon(player, false);
+					auto w = Gear::FindWeapon(actor, false);
 					if (w) {
-						TemperDecay(player, { true, false, 0 }, decay * Materials::Classify(w.object).durability, false);
+						TemperDecay(actor, state, { true, false, 0 }, decay * Materials::Classify(w.object).durability, false);
 					}
 				}
-				g_weapDelay = true;
-				if (!g_hitDelay) {
-					g_resetAt = clock::now() + 2s;
+				state.weapDelay = true;
+				if (!state.hitDelay) {
+					state.resetAt = clock::now() + 2s;
 				}
 				return RE::BSEventNotifyControl::kContinue;
 			}
 		};
+
+		// Closing the crafting menu while not sitting at a grindstone or workbench means the player used the repair kit; getting up from one
+		// of them clears that (the original's OnMenuClose / OnGetUp).
+		class MenuSink final : public RE::BSTEventSink<RE::MenuOpenCloseEvent>
+		{
+		public:
+			static MenuSink* Get()
+			{
+				static MenuSink i;
+				return std::addressof(i);
+			}
+
+			RE::BSEventNotifyControl ProcessEvent(const RE::MenuOpenCloseEvent* a_event, RE::BSTEventSource<RE::MenuOpenCloseEvent>*) override
+			{
+				if (!a_event || a_event->opening || a_event->menuName != RE::CraftingMenu::MENU_NAME) {
+					return RE::BSEventNotifyControl::kContinue;
+				}
+				auto* player = RE::PlayerCharacter::GetSingleton();
+				if (!player) {
+					return RE::BSEventNotifyControl::kContinue;
+				}
+				const bool kit = player->GetSitSleepState() == RE::SIT_SLEEP_STATE::kNormal;
+				SKSE::log::info("Crafting menu closed ({}): {}", kit ? "not sitting" : "at a workbench", kit ? "repair kit thinner buffer" : "normal buffer");
+				g_whetstone = kit;
+				if (kit) {
+					SeedLater(player->GetFormID());
+				}
+				return RE::BSEventNotifyControl::kContinue;
+			}
+		};
+
+		bool AtCraftingFurniture(RE::PlayerCharacter* a_player)
+		{
+			auto handle = a_player->GetOccupiedFurniture();
+			auto ref = handle ? handle.get() : nullptr;
+			auto* base = ref ? ref->GetBaseObject() : nullptr;
+			auto* furniture = base ? base->As<RE::TESFurniture>() : nullptr;
+			return furniture && (furniture->HasKeywordString("CraftingSmithingSharpeningWheel") || furniture->HasKeywordString("CraftingSmithingArmorTable"));
+		}
+
+		// Once every second: notices when the player gets up from a grindstone or workbench, and finds followers to hook and seed.
+		void Poll()
+		{
+			auto* player = RE::PlayerCharacter::GetSingleton();
+			if (!player || !player->Is3DLoaded()) {
+				return;
+			}
+			static bool s_atBench = false;
+			const bool  atBench = AtCraftingFurniture(player);
+			if (s_atBench && !atBench) {
+				g_whetstone = false;
+				SKSE::log::info("Left a grindstone or workbench: normal buffer");
+				SeedLater(player->GetFormID());
+			}
+			s_atBench = atBench;
+
+			auto* lists = RE::ProcessLists::GetSingleton();
+			if (!lists || Settings::Get().followerDecayChance <= 0) {
+				return;
+			}
+			std::unordered_set<RE::FormID> present;
+			for (auto& handle : lists->highActorHandles) {
+				auto actor = handle.get();
+				if (!actor || actor.get() == player || !Tracked(actor.get())) {
+					continue;
+				}
+				present.insert(actor->GetFormID());
+				actor->RemoveAnimationGraphEventSink(AnimSink::Get());
+				actor->AddAnimationGraphEventSink(AnimSink::Get());
+				std::scoped_lock l(g_lock);
+				if (g_seeded.insert(actor->GetFormID()).second) {
+					SKSE::log::info("Follower {} ({:08X}) is now tracked", actor->GetName(), actor->GetFormID());
+					SeedAll(actor.get());
+				}
+			}
+			std::scoped_lock l(g_lock);
+			std::erase_if(g_seeded, [&](RE::FormID id) { return !present.contains(id); });
+		}
+
+		void StartPoller()
+		{
+			static std::atomic<bool> started{ false };
+			if (started.exchange(true)) {
+				return;
+			}
+			std::thread([] {
+				while (true) {
+					std::this_thread::sleep_for(1s);
+					SKSE::GetTaskInterface()->AddTask(Poll);
+				}
+			}).detach();
+		}
 	}
 
 	void Register()
 	{
-		if (auto* dh = RE::TESDataHandler::GetSingleton()) {
-			g_requiem = Materials::FromFile("Requiem.esp"sv, 0x973D69) != nullptr;
-		}
+		g_requiem = Materials::FromFile("Requiem.esp"sv, 0x973D69) != nullptr;
 		auto* holder = RE::ScriptEventSourceHolder::GetSingleton();
 		if (!holder) {
 			SKSE::log::error("Degrade: the game's event source is not available");
@@ -417,7 +548,10 @@ namespace Degrade
 		}
 		holder->AddEventSink<RE::TESHitEvent>(HitSink::Get());
 		holder->AddEventSink<RE::TESEquipEvent>(EquipSink::Get());
-		SKSE::log::info("Degrade: listening for hits taken and equipment changes (Requiem {})", g_requiem ? "found" : "not found");
+		if (auto* ui = RE::UI::GetSingleton()) {
+			ui->AddEventSink<RE::MenuOpenCloseEvent>(MenuSink::Get());
+		}
+		SKSE::log::info("Degrade: listening for hits taken, equipment changes and the crafting menu (Requiem {})", g_requiem ? "found" : "not found");
 	}
 
 	void HookPlayer()
@@ -429,6 +563,13 @@ namespace Degrade
 		player->RemoveAnimationGraphEventSink(AnimSink::Get());
 		const bool ok = player->AddAnimationGraphEventSink(AnimSink::Get());
 		SKSE::log::info("Degrade: animation events {}", ok ? "hooked" : "NOT hooked");
-		SeedLater();
+		{
+			std::scoped_lock l(g_lock);
+			g_states.clear();
+			g_seeded.clear();
+			g_whetstone = false;
+		}
+		SeedLater(player->GetFormID());
+		StartPoller();
 	}
 }
