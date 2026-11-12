@@ -28,7 +28,9 @@ namespace Settings
 		float widgetAlpha = 0.9f;
 		float widgetScale = 1.3f;
 		int   widgetIcons = 1;  // 0 text only, 1 new icons, 2 the original icons
-		int   widgetItems = 0;  // 0 weapons and armor, 1 weapons and shield, 2 armor
+		int   widgetIconColor = 0;  // 0 as drawn, 1 one colour of your choice, 2 by health (green when fresh, red when nearly worn)
+	float widgetIconR = 0.95f, widgetIconG = 0.8f, widgetIconB = 0.4f;
+	int   widgetItems = 0; // 0 weapons and armor, 1 weapons and shield, 2 armor
 		bool  widgetContextual = false;  // only show with weapons drawn, or for widgetDelay seconds after gear changes
 		float widgetDelay = 8.0f;
 		int   degradeText = 0;  // 0 off, 1 when an item becomes untempered, 2 every level

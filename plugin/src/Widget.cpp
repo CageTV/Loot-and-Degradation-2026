@@ -204,6 +204,7 @@ namespace Widget
 			std::string percent;
 			float       alpha;
 			ImTextureID icon;
+			float       tint[3];
 		};
 		std::vector<Cell> cells;
 		for (const auto& slot : slots) {
@@ -222,7 +223,18 @@ namespace Widget
 			const int   pct = static_cast<int>(left * 100.0f + 0.5f);
 			Cell        c{};
 			if (iconSet >= 0 && slot.icon >= 0) {
-				c.icon = IconTexture(iconSet, slot.icon);
+				c.tint[0] = c.tint[1] = c.tint[2] = 1.0f;
+					c.icon = IconTexture(s.widgetIconColor != 0 ? 1 : iconSet, slot.icon);  // colouring needs the plain white silhouettes (set 1)
+					if (s.widgetIconColor == 1) {
+						c.tint[0] = s.widgetIconR;
+						c.tint[1] = s.widgetIconG;
+						c.tint[2] = s.widgetIconB;
+					} else if (s.widgetIconColor == 2 && tempered) {
+						// fresh = green, half = yellow, nearly worn = red
+						c.tint[0] = std::clamp(2.0f * (1.0f - left), 0.0f, 1.0f);
+						c.tint[1] = std::clamp(2.0f * left, 0.0f, 1.0f);
+						c.tint[2] = 0.15f;
+					}
 			}
 			if (c.icon) {
 				c.text = level;  // the icon says which piece it is
@@ -263,7 +275,7 @@ namespace Widget
 			float left = x + pad;
 			if (c.icon) {
 				ImDrawListManager::AddImage(dl, c.icon, ImVec2(left, mid - iconSize * 0.5f), ImVec2(left + iconSize, mid + iconSize * 0.5f), ImVec2(0, 0), ImVec2(1, 1),
-					Color(1.0f, 1.0f, 1.0f, c.alpha));
+					Color(c.tint[0], c.tint[1], c.tint[2], c.alpha));
 				left += iconSize + pad;
 			}
 			ImDrawListManager::AddText(dl, font, size, ImVec2(left, textY), white, c.text.c_str());

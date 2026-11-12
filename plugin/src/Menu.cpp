@@ -198,6 +198,14 @@ namespace Menu
 			Note("Percentage based always shows the level with how much of it is left. Alpha based shows nothing for fresh gear and brightens as it wears down. Both combines them.");
 			static const char* const kIcons[] = { "Text only", "New icons", "Original icons" };
 			Changed(Combo("Icons", &d.widgetIcons, kIcons, 3));
+			static const char* const kColor[] = { "As drawn", "One colour", "By health (green to red)" };
+			Changed(Combo("Icon colour", &d.widgetIconColor, kColor, 3));
+			Note("Any colour option draws the icons as plain silhouettes (the original shapes) and tints them, so the new bronze look is only used with 'As drawn'.");
+			if (d.widgetIconColor == 1) {
+				Changed(SliderFloat("Red", &d.widgetIconR, 0.0f, 1.0f, "%.2f"));
+				Changed(SliderFloat("Green", &d.widgetIconG, 0.0f, 1.0f, "%.2f"));
+				Changed(SliderFloat("Blue", &d.widgetIconB, 0.0f, 1.0f, "%.2f"));
+			}
 			static const char* const kItems[] = { "Weapons and armor", "Weapons and shield only", "Armor only" };
 			Changed(Combo("Items", &d.widgetItems, kItems, 3));
 			static const char* const kPos[] = { "Top left", "Top right", "Bottom left", "Bottom right" };

@@ -76,6 +76,10 @@ namespace Settings
 		getF("WidgetScale", d.widgetScale);
 		getI("WidgetItems", d.widgetItems);
 		getI("WidgetIcons", d.widgetIcons);
+		getI("WidgetIconColor", d.widgetIconColor);
+		getF("WidgetIconR", d.widgetIconR);
+		getF("WidgetIconG", d.widgetIconG);
+		getF("WidgetIconB", d.widgetIconB);
 		getB("WidgetContextual", d.widgetContextual);
 		getF("WidgetDelay", d.widgetDelay);
 		getF("Cloth", d.cloth);
@@ -106,9 +110,9 @@ namespace Settings
 			d.requiemBreak ? 1 : 0);
 		out << std::format("[NpcGear]\nNpcTemperRarity={}\nNpcEnchantRarity={}\nNpcLevelStep={}\nNpcLessLeveled={}\n\n", d.npcTemperRarity, d.npcEnchantRarity, d.npcLevelStep,
 			d.npcLessLeveled ? 1 : 0);
-		out << std::format("[Widget]\nWidgetStyle={}\nWidgetPos={}\nWidgetOrient={}\nWidgetX={}\nWidgetY={}\nWidgetAlpha={}\nWidgetScale={}\nWidgetItems={}\nWidgetIcons={}\nWidgetContextual={}\nWidgetDelay={}\n\n",
-			d.widgetStyle, d.widgetPos, d.widgetOrient, d.widgetX, d.widgetY, d.widgetAlpha, d.widgetScale, d.widgetItems, d.widgetIcons, d.widgetContextual ? 1 : 0,
-			d.widgetDelay);
+		out << std::format("[Widget]\nWidgetStyle={}\nWidgetPos={}\nWidgetOrient={}\nWidgetX={}\nWidgetY={}\nWidgetAlpha={}\nWidgetScale={}\nWidgetItems={}\nWidgetIcons={}\nWidgetIconColor={}\nWidgetIconR={}\nWidgetIconG={}\nWidgetIconB={}\nWidgetContextual={}\nWidgetDelay={}\n\n",
+			d.widgetStyle, d.widgetPos, d.widgetOrient, d.widgetX, d.widgetY, d.widgetAlpha, d.widgetScale, d.widgetItems, d.widgetIcons, d.widgetIconColor,
+			d.widgetIconR, d.widgetIconG, d.widgetIconB, d.widgetContextual ? 1 : 0, d.widgetDelay);
 		out << std::format("[Durability]\nCloth={}\nLeatherWood={}\nIron={}\nSteel={}\nElven={}\nFalmer={}\nDwarven={}\nGlass={}\nOrcish={}\nDragon={}\nDaedricEbony={}\n",
 			d.cloth, d.leatherWood, d.iron, d.steel, d.elven, d.falmer, d.dwarven, d.glass, d.orcish, d.dragon, d.daedricEbony);
 	}
