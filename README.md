@@ -15,3 +15,5 @@ may not use it commercially or paywall it. Changes are not endorsed by Step Modi
 - psychosteve - the widget icons
 
 Changes from the original: the Papyrus implementation is replaced by a native SKSE plugin; settings use SKSE Menu Framework; updated for Skyrim SE/AE/1.7.x.
+
+Third party: plugin/include/SKSEMenuFramework.h is the SKSE Menu Framework 3 project's SDK header, unmodified, under its own terms (it is not covered by the license above).

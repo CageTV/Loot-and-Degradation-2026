@@ -5,6 +5,7 @@
  */
 #include "PCH.h"
 #include "Degrade.h"
+#include "Menu.h"
 #include "Settings.h"
 
 namespace
@@ -26,6 +27,9 @@ namespace
 	void OnMessage(SKSE::MessagingInterface::Message* a_msg)
 	{
 		switch (a_msg->type) {
+		case SKSE::MessagingInterface::kPostLoad:
+			Menu::Register();  // SKSE Menu Framework loads after us, so register once every plugin is loaded
+			break;
 		case SKSE::MessagingInterface::kDataLoaded:
 			Degrade::Register();
 			break;

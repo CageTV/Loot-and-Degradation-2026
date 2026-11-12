@@ -82,13 +82,13 @@ namespace Settings
 		std::filesystem::create_directories(IniPath().parent_path());
 		std::ofstream out(IniPath(), std::ios::trunc);
 		const auto&   d = g_data;
-		out << "; Loot and Degradation 2026 (a remix of Loot and Degradation by isoku, CC BY-NC-SA 4.0)\n[Degradation]\n";
-		out << "DecayChance=" << d.decayChance << "\nDegradeMult=" << d.degradeMult << "\nFollowerDecayChance=" << d.followerDecayChance
-			<< "\nFollowerDegradeMult=" << d.followerDegradeMult << "\nDegradeText=" << d.degradeText << "\n\n[Breaking]\n";
-		out << "BreakChance=" << d.breakChance << "\nBreakType=" << d.breakType << "\nBreakableItems=" << d.breakableItems
-			<< "\nRequiemBreak=" << (d.requiemBreak ? 1 : 0) << "\n\n[Durability]\n";
-		out << "Cloth=" << d.cloth << "\nLeatherWood=" << d.leatherWood << "\nIron=" << d.iron << "\nSteel=" << d.steel << "\nElven=" << d.elven
-			<< "\nFalmer=" << d.falmer << "\nDwarven=" << d.dwarven << "\nGlass=" << d.glass << "\nOrcish=" << d.orcish << "\nDragon=" << d.dragon
-			<< "\nDaedricEbony=" << d.daedricEbony << "\n";
+		out << "; Loot and Degradation 2026 (a remix of Loot and Degradation by isoku, CC BY-NC-SA 4.0)\n";
+		out << "; These are also on the Loot and Degradation pages of the SKSE Menu Framework; changes there are written here.\n";
+		out << std::format("[Degradation]\nDecayChance={}\nDegradeMult={}\nFollowerDecayChance={}\nFollowerDegradeMult={}\nDegradeText={}\n\n", d.decayChance,
+			d.degradeMult, d.followerDecayChance, d.followerDegradeMult, d.degradeText);
+		out << std::format("[Breaking]\nBreakChance={}\nBreakType={}\nBreakableItems={}\nRequiemBreak={}\n\n", d.breakChance, d.breakType, d.breakableItems,
+			d.requiemBreak ? 1 : 0);
+		out << std::format("[Durability]\nCloth={}\nLeatherWood={}\nIron={}\nSteel={}\nElven={}\nFalmer={}\nDwarven={}\nGlass={}\nOrcish={}\nDragon={}\nDaedricEbony={}\n",
+			d.cloth, d.leatherWood, d.iron, d.steel, d.elven, d.falmer, d.dwarven, d.glass, d.orcish, d.dragon, d.daedricEbony);
 	}
 }
