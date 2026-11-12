@@ -535,7 +535,11 @@ namespace Degrade
 			return;
 		}
 		RE::BSSoundHandle handle;
+		#ifdef LD_NG_COMMONLIB
 		if (!am->GetSoundHandle(handle, form->soundDescriptor)) {
+#else
+		if (!am->BuildSoundDataFromDescriptor(handle, form->soundDescriptor)) {
+#endif
 			SKSE::log::warn("Could not build sound {:06X}", a_localId);
 			return;
 		}

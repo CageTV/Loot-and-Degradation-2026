@@ -37,7 +37,7 @@ namespace Kit
 				Notify("Equipment cannot be improved while sneaking.");
 			} else if (a_player->IsOnMount()) {
 				Notify("Equipment cannot be improved while mounted.");
-			} else if (a_player->IsSwimming()) {
+			} else if (a_player->AsActorState()->IsSwimming()) {
 				Notify("Equipment cannot be improved while swimming.");
 			} else {
 				return true;
@@ -52,7 +52,12 @@ namespace Kit
 		{
 			Page page = Page::Main;
 
-			void Run(std::uint8_t a_button) override
+			#ifdef LD_NG_COMMONLIB
+			void Run(std::uint8_t a_button) override { Pick(a_button); }
+#else
+			void Run(Message a_msg) override { Pick(static_cast<std::uint8_t>(a_msg)); }
+#endif
+			void Pick(std::uint8_t a_button)
 			{
 				auto* player = RE::PlayerCharacter::GetSingleton();
 				if (!player) {
@@ -123,7 +128,12 @@ namespace Kit
 		void ShowNow(Page a_page)
 		{
 			auto* queue = RE::UIMessageQueue::GetSingleton();
+			#ifdef LD_NG_COMMONLIB
 			auto* data = RE::UIMessageDataFactory::Create<RE::MessageBoxData>();
+#else
+			auto* factory = RE::MessageDataFactoryManager::GetSingleton()->GetCreator<RE::MessageBoxData>(RE::InterfaceStrings::GetSingleton()->messageBoxData);
+			auto* data = factory ? factory->Create() : nullptr;
+#endif
 			if (!queue || !data) {
 				SKSE::log::warn("Kit: could not build the message box");
 				return;
@@ -135,16 +145,16 @@ namespace Kit
 				for (auto* label : { "Improve Weapons", "Improve Armor", "Damage Equipment", "Exit" }) {
 					data->buttonText.push_back(label);
 				}
-				data->cancelButtonIndex = 3;
+				LD_MSGBOX_CANCEL(data, 3);
 			} else {
 				data->bodyText = "Degrade the selected item by one tier.";
 				for (auto* label : { "Headpiece", "Cuirass", "Gloves", "Boots", "Main Weapon", "Off Weapon", "Shield", "Cancel" }) {
 					data->buttonText.push_back(label);
 				}
-				data->cancelButtonIndex = 7;
+				LD_MSGBOX_CANCEL(data, 7);
 			}
 			data->callback = RE::BSTSmartPointer<RE::IMessageBoxCallback>(cb);
-			data->isCancellable = true;
+			LD_MSGBOX_CANCELLABLE(data);
 			queue->AddMessage(RE::MessageBoxMenu::MENU_NAME, RE::UI_MESSAGE_TYPE::kShow, data);
 		}
 
