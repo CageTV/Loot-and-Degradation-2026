@@ -17,7 +17,8 @@ WHAT IS IN THIS VERSION
 Not in this version yet: NPCs looting, and the blacksmith and fletcher tempering services.
 
 REQUIREMENTS
-- Skyrim Special Edition / Anniversary Edition (the installer picks the matching DLL), or Skyrim VR with the older DLL
+- Skyrim Special Edition / Anniversary Edition (the installer picks the matching DLL), or Skyrim VR with the older DLL (built for SE, AE and VR; not yet
+  run in a VR game)
 - SKSE64 and Address Library for SKSE Plugins for your game version
 - SKSE Menu Framework 3 (Nexus 120352): every setting and the widget are drawn through it. Without it the plugin runs with the settings in
   Data/SKSE/Plugins/LootandDegradation.ini and there is no widget.
@@ -25,8 +26,9 @@ Do not use it together with the original Loot and Degradation (any version), Sim
 
 INSTALL
 Use the installer (FOMOD). It asks which LootandDegradation.dll to use and pre-selects the right one: the new build for Skyrim 1.6.1170 and newer
-(1.7.x included), the older build for VR and for 1.6.1130 and older. Then enable LootandDegradation.esp.
-A new game is recommended. Starting from a save that already used the original is not supported.
+(1.7.x included), the older build for VR and for 1.6.1130 and older. It also offers the PBR textures for the whetstone and metal scrap (pick them only if you use PBR
+with PBR Nif Patcher or ParallaxGen / PGPatcher). Then enable LootandDegradation.esp.
+A new game is always recommended. Starting from a save that already used the original is not supported.
 
 SETTINGS
 Open the SKSE Menu Framework menu and pick Loot and Degradation: Degradation, Breaking, Durability, NPC gear, Widget. Changes apply at once and are

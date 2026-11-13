@@ -1,7 +1,7 @@
 [size=6][b]Loot and Degradation 2026[/b][/size]
 [i]isoku's Loot and Degradation rebuilt as one native SKSE plugin: tempered gear that wears down, tempered and enchanted NPC gear, the Equipment Repair Kit, a gear health widget, and every setting in SKSE Menu Framework 3.[/i]
 
-[b]Pre-release.[/b] NPC looting and the blacksmith / fletcher tempering services of the original are not in yet. A new game is recommended.
+[b]Pre-release.[/b] NPC looting and the blacksmith / fletcher tempering services of the original are not in yet. A new game is always recommended.
 
 [line]
 

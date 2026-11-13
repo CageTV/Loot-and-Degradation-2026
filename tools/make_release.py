@@ -26,6 +26,10 @@ EXCEPTIONS = os.path.join(ROOT, "..", "CommonLibSSE-NG-alandtse", "EXCEPTIONS.md
 MIT = os.path.join(ROOT, "..", "CommonLibSSE-NG-alandtse", "licenses", "LICENSE-MIT.txt")
 NEW_GAME = "1.6.1170.0"
 SKIP = {"SKSE/Plugins/LootandDegradation.dll", "SKSE/Plugins/LootandDegradation.ini"}
+# leftovers of the original that nothing uses any more (the Papyrus/Flash widget, the old MCM strings, the old menu title image)
+UNUSED = ("interface/exported/", "interface/translations/", "interface/lootanddegradation/title.dds")
+# the author's PBR addition: its own FOMOD option, not in the base files
+PBR = ("textures/PBR/", "PBRNifPatcher/")
 REPO = "https://github.com/CageTV/Loot-and-Degradation-2026"
 
 os.makedirs(OUT, exist_ok=True)
@@ -97,11 +101,25 @@ def module_config():
         </group>
       </optionalFileGroups>
     </installStep>
+    <installStep name="Textures">
+      <optionalFileGroups order="Explicit">
+        <group name="PBR textures for the whetstone and the metal scrap" type="SelectAny">
+          <plugins order="Explicit">
+            <plugin name="PBR textures (optional)">
+              <description>Only for a PBR setup: PBR textures for the whetstone and metal scrap, with the PBR Nif Patcher / ParallaxGen / PGPatcher settings for them. Needs a PBR-capable renderer (Community Shaders with PBR, for example). Leave it off otherwise.</description>
+              <conditionFlags><flag name="pbr">yes</flag></conditionFlags>
+              <typeDescriptor><type name="Optional"/></typeDescriptor>
+            </plugin>
+          </plugins>
+        </group>
+      </optionalFileGroups>
+    </installStep>
   </installSteps>
   <conditionalFileInstalls>
     <patterns>
       <pattern><dependencies><flagDependency flag="dll" value="new"/></dependencies><files><folder source="dll-new" destination=""/></files></pattern>
       <pattern><dependencies><flagDependency flag="dll" value="older"/></dependencies><files><folder source="dll-older" destination=""/></files></pattern>
+      <pattern><dependencies><flagDependency flag="pbr" value="yes"/></dependencies><files><folder source="pbr" destination=""/></files></pattern>
     </patterns>
   </conditionalFileInstalls>
 </config>
@@ -129,9 +147,9 @@ def build():
             for f in files:
                 full = os.path.join(base, f)
                 rel = os.path.relpath(full, MOD).replace(os.sep, "/")
-                if rel in SKIP:
+                if rel in SKIP or rel.startswith(UNUSED):
                     continue
-                add(z, "common/" + rel, open(full, "rb").read())
+                add(z, ("pbr/" if rel.startswith(PBR) else "common/") + rel, open(full, "rb").read())
         for which, dll in (("new", DLL_NEW), ("older", DLL_OLD)):
             add(z, f"dll-{which}/SKSE/Plugins/LootandDegradation.dll", open(dll, "rb").read())
             add(z, f"dll-{which}/SKSE/Plugins/LootandDegradation-LICENSE.txt", dll_license().encode())
